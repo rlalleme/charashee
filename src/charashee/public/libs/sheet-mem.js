@@ -1,7 +1,7 @@
 const maxLength = 65000
 
 // Save form state to hashtag
-function storeIntoURL(client, uuid) {
+function storeSheet(client, uuid) {
 	//Grab all the form data and put it into an array.
 	var result = {};
 	$.each($('form#charashee :input').serializeArray(), function() {
@@ -19,18 +19,18 @@ function storeIntoURL(client, uuid) {
 		alert('Length of ' + totalLength + ' exceeds maximum '+maxLength+'. Remove some text and re-save to ensure your bookmark works!');
 	}
     
-//     if(client != undefined && uuid != undefined && uuid != '') {
-//       message = new Paho.Message(data);
-//       message.destinationName = uuid;
-//       client.send(message);
-//     }
+	if(client != undefined && uuid != undefined && uuid != '') {
+		message = new Paho.Message(data);
+		message.destinationName = uuid;
+		client.send(message);
+	}
 
 	// Put that string up into the hashtag 
 	window.location.hash = charData;
 }
 
 // Read the hashtag data and use to populate form
-function retrieveFromURL() {
+function retrieveSheet() {
 	// Load the hashtag into variable
 	var charHashtag = window.location.hash.substr(1);
 	// Decompress hashtag to json string

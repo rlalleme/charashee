@@ -2,10 +2,12 @@ var client;
 var clientId;
 
 $( document ).ready(function() {
-	retrieveFromURL();
-//   createMQTTClient();
+	retrieveSheet();
+	
+	createMQTTClient();
+
 	setInputListeners();
-//   setChannelListener();
+// 	setChannelListener();
   
 //   $('#joinTable').click(joinTable);
 	$('#export').click(exportfn);
@@ -25,7 +27,7 @@ function setInputListeners() {
 		var input = $(this); 
 		input.unbind();
 		input.change(function() {
-			storeIntoURL(client, clientId);
+			storeSheet(client, clientId);
 		});
 	});
 }
@@ -37,38 +39,41 @@ function setInputListeners() {
 //   });
 // }
 
-// function createMQTTClient() {
-//   clientId = $('#uuid').val();
-//   if(clientId == undefined || clientId == '')
-//     clientId = Math.random()*100
-//   clientId =  'PL'+clientId
-//   client = new Paho.Client(location.hostname, 2883, clientId);
-//   
-//   client.onConnectionLost = onConnectionLost;
-//   client.onMessageArrived = onMessageArrived;
-// 
-//   // connect the client
-//   client.connect({onSuccess:onConnect, reconnect : true});
-// }
-// 
-// function onConnect() {
-//   console.log("onConnect " + clientId);
-//   client.subscribe(clientId);
-//   putCharstuff(client, clientId);
-//   
-// }
-// 
-// // called when the client loses its connection
+//Connect to MQTT
+function createMQTTClient() {
+	clientId = $('#uuid').val();
+	if(clientId == undefined || clientId == '')
+		clientId = Math.random()*100
+	clientId =  'PL'+clientId
+	client = new Paho.Client(location.hostname, 2883, clientId);
+
+// 	client.onConnectionLost = onConnectionLost;
+	client.onMessageArrived = onMessageArrived;
+
+	//Connect the client
+	client.connect({onSuccess:onConnect, reconnect : true});
+}
+
+//Code executed on connection
+function onConnect() {
+	console.log("onConnect " + clientId);
+	client.subscribe(clientId);
+	storeSheet(client, clientId);
+  
+}
+
+// //Called when the client loses its connection
 // function onConnectionLost(responseObject) {
-//   if (responseObject.errorCode !== 0) {
-//     console.log("onConnectionLost:"+responseObject.errorMessage);
-//   }
+// 	if (responseObject.errorCode !== 0) {
+// 		console.log("onConnectionLost:"+responseObject.errorMessage);
+// 	}
+// 	//TODO
 // }
-// 
-// // called when a message arrives
-// function onMessageArrived(message) {
-//   console.log("onMessageArrived:"+message.payloadString);
-//   if(message.payloadString == 'request') {
-//     putCharstuff(client, clientId);
-//   }
-// }
+
+//Called when a message arrives
+function onMessageArrived(message) {
+	console.log("onMessageArrived:"+message.payloadString);
+	if(message.payloadString == 'request') {
+		storeSheet(client, clientId);
+	}
+}
