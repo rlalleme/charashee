@@ -2,13 +2,13 @@ var client;
 var clientId;
 
 $( document ).ready(function() {
-  loadCharstuff();
+	retrieveFromURL();
 //   createMQTTClient();
-  setInputListeners();
+	setInputListeners();
 //   setChannelListener();
   
 //   $('#joinTable').click(joinTable);
-  $('#export').click(exportfn);
+	$('#export').click(exportfn);
 });
 
 // function joinTable() {
@@ -21,15 +21,13 @@ $( document ).ready(function() {
 // }
 
 function setInputListeners() {
-  $("form#charSheet :input").each(function(){
-    var input = $(this); 
-    console.log('Input Found')
-    input.unbind();
-    input.change(function() {
-      console.log('Change detected')
-      putCharstuff(client, clientId);
-    });
-  });
+	$("form#charashee :input").each(function(){
+		var input = $(this); 
+		input.unbind();
+		input.change(function() {
+			storeIntoURL(client, clientId);
+		});
+	});
 }
 
 // function setChannelListener() {
