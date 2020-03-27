@@ -1,0 +1,72 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="pl.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$(window).keydown(function(event){
+			if((event.keyCode == 13)){
+				event.preventDefault();
+				return false;
+			}
+		});
+		$("form :input").each(function(){
+			var input = $(this);
+			input.unbind();
+			input.change(function() {});
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>Fate</h1>
+
+<form>
+	<fieldset>
+		<legend>Identité</legend>
+		<p><input type="text" id="joueur" name="joueur" placeholder="Joueur"></p>
+		<p><input type="text" id="nom" name="nom" placeholder="Nom"></p>
+		<p><textarea id="descr" name="descr" placeholder="Description"></textarea></p>
+	</fieldset>
+	<fieldset>
+		<legend>Fate</legend>
+		<p><input type="number" id="restauration" name="restauration" min="0" max="10" placeholder="restauration">
+		<p><input type="number" id="points_fate" name="points_fate" min="0" max="10" placeholder="Points Fate">
+	</fieldset>
+	<fieldset>
+		<legend>Aspects</legend>
+		<p><input type="text" id="aspect1" name="aspect1" placeholder="Concept"></p>
+		<p><input type="text" id="aspect2" name="aspect2" placeholder="Problème"></p>
+		<p><input type="text" id="aspect3" name="aspect3"></p>
+		<p><input type="text" id="aspect4" name="aspect4"></p>
+		<p><input type="text" id="aspect5" name="aspect5"></p>
+	</fieldset>
+	<fieldset>
+		<legend>Approches</legend>
+		<p><label for="astucieux">Astucieux</label><input type="number" id="astucieux" name="astucieux" min="0" max="10">
+		<p><label for="flamboyant">Flamboyant</label><input type="number" id="flamboyant" name="flamboyant" min="0" max="10">
+		<p><label for="puissant">Puissant</label><input type="number" id="puissant" name="puissant" min="0" max="10">
+		<p><label for="rapide">Rapide</label><input type="number" id="rapide" name="rapide" min="0" max="10">
+		<p><label for="soigneux">Soigneux</label><input type="number" id="soigneux" name="soigneux" min="0" max="10">
+		<p><label for="sournois">Sournois</label><input type="number" id="sournois" name="sournois" min="0" max="10">
+	</fieldset>
+	<fieldset>
+		<legend>Prouesses</legend>
+		<p><textarea id="prouesses" name="prouesses" placeholder="Prouesses"></textarea></p>
+	</fieldset>
+	<fieldset>
+		<legend>Stress</legend>
+		<p><label for="stress1">1</label><input type="checkbox" id="stress1" name="stress1">
+		<p><label for="stress2">2</label><input type="checkbox" id="stress2" name="stress2">
+		<p><label for="stress3">3</label><input type="checkbox" id="stress3" name="stress3">
+	</fieldset>
+	<fieldset>
+		<legend>Conséquences</legend>
+		<p><label for="consequ_legere">2</label><input type="text" id="consequ_legere" name="consequ_legere" placeholder="Légère"></p>
+		<p><label for="consequ_moderee">4</label><input type="text" id="consequ_moderee" name="consequ_moderee" placeholder="Modérée"></p>
+		<p><label for="consequ_lourde">6</label><input type="text" id="consequ_lourde" name="consequ_lourde" placeholder="Lourde"></p>
+	</fieldset>
+</form>
+</body>
+</html>
