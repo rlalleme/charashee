@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	setInputListeners();
   
 	$('#joinTable').click(joinTable);
-	$('#export').click(exportfn);
+	$('#export').click(exportPlayer);
 });
 
 function joinTable() {
@@ -21,6 +21,14 @@ function joinTable() {
 	}
 }
 
+function exportPlayer() {
+	var filename = $('input#game').val();
+	if($('input#player').val() != '')
+		filename = filename + "_" + $('input#player').val();
+	if($('input#character').val() != '')
+		filename = filename + "_" + $('input#character').val();
+	exportFile(filename);
+}
 function setInputListeners() {
 	$("form#charashee :input").each(function(){
 		var input = $(this); 

@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
 	setInputListeners();
 
-	$('#export').click(exportfn);
+	$('#export').click(exportMaster);
 });
 
 function setInputListeners() {
@@ -21,6 +21,13 @@ function setInputListeners() {
 			storeSheet();
 		});
 	});
+}
+
+function exportMaster() {
+	var filename = $('input#game').val();
+	if($('input#name').val() != '')
+		filename = filename + "_" + $('input#name').val();
+	exportFile(filename);
 }
 
 //Connect one player

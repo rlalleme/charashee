@@ -43,8 +43,20 @@ function retrieveSheet() {
 	populate(formElement, data);
 }
 
-function exportfn() {
+function exportFile(filename) {
 	var charHashtag = window.location.hash.substr(1);
 	var charData = LZString.decompressFromEncodedURIComponent(charHashtag);
-	alert(charData);
+
+	console.log(charData);
+	
+	var element = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(charData));
+	element.setAttribute('download', filename+'.json');
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
 }
