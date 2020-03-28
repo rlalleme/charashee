@@ -8,18 +8,18 @@ $( document ).ready(function() {
 
 	setInputListeners();
   
-//   $('#joinTable').click(joinTable);
+	$('#joinTable').click(joinTable);
 	$('#export').click(exportfn);
 });
 
-// function joinTable() {
-//   var tableName = prompt("Table UUID", "");
-//   if(tableName != '') {
-//     message = new Paho.Message('join'+clientId);
-//     message.destinationName = 'GM'+tableName;
-//     client.send(message);
-//   }
-// }
+function joinTable() {
+	var tableName = prompt("Table UUID", "");
+	if(tableName != '') {
+		message = new Paho.Message('join'+clientId);
+		message.destinationName = 'GM'+tableName;
+		client.send(message);
+	}
+}
 
 function setInputListeners() {
 	$("form#charashee :input").each(function(){

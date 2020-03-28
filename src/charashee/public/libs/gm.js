@@ -173,21 +173,7 @@ function onMessageArrived(message) {
 		$('#'+message.destinationName.substr(2)+' .content').val(message.payloadString);
 // 		storeSheet();
 	} else if(message.payloadString.startsWith('join')) {
-		var player = message.payloadString.substr(6);
-		console.log(player);
-		var first = true;
-		$('ul li input[name^="player"]').each(function(i){
-			var content = $(this).val();
-			if((content == undefined || content == '') && first) {
-				first = false
-				$(this).val(player);
-				$(this).parent().show();
-				setInputListeners();
-				storeSheet();
-				var channel = 'PL'+player;
-				client.subscribe(channel);
-				askForUpdate(channel);
-			}
-		});
+		var player = message.payloadString.substr(6); //Remove 'joinPL' at the beginning
+		addPlayer(player);
 	}
 }
