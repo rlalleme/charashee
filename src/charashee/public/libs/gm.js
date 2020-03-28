@@ -4,10 +4,9 @@ var clientId;
 $( document ).ready(function() {
 	retrieveSheet();
 	
-	createMQTTClient();
+	generateTID();
 
 	$('#addPlayer').click(addPlayer);
-	$('#generateTID').click(generateTID);
 
 	hideEmptyPlayers();
 
@@ -74,15 +73,21 @@ function addPlayer() {
 	});
 }
 
-//Change the Table ID and connect to the newly created table
+//If the TID exists connect the MQTT, otherwise create the TID and start the connection
 function generateTID() {
-	//Generate TID
-	getUUID(function(res) {
-		$('#tid').val(res);
-		$('#tid').trigger('change');
-		clientId = 'GM'+res;
-		client.subscribe(clientId);
-	});
+	clientId = $('#tid').val();
+	if(clientId == undefined || clientId == ''){
+		//Generate TID
+		getUUID(function(res) {
+			$('#tid').val(res);
+			$('#tid').trigger('change');
+			clientId = 'GM'+res;
+			createMQTTClient();
+		});
+	}else{
+		clientId =  'GM'+clientId
+		createMQTTClient();
+	}
 }
 
 // function setChannelListener() {
@@ -110,11 +115,6 @@ function askForUpdate(channel) {
 
 //Connect to MQTT
 function createMQTTClient() {
-	clientId = $('#tid').val();
-	if(clientId == undefined || clientId == '')
-		clientId = Math.random()*100
-	clientId =  'GM'+clientId
-
 	client = new Paho.Client(location.hostname, 2883, clientId);
 
 // 	client.onConnectionLost = onConnectionLost;
