@@ -4,12 +4,11 @@ var clientId;
 $( document ).ready(function() {
 	retrieveSheet();
 	
+	setInputListeners();
+
 	generateTID();
 
 	$('#addPlayer').click(createPlayer);
-
-	setInputListeners();
-
 	$('#export').click(exportMaster);
 	$('#import').change(importMaster);
 });
@@ -25,9 +24,9 @@ function setInputListeners() {
 }
 
 function exportMaster() {
-	var filename = $('input#game').val();
-	if($('input#name').val() != '')
-		filename = filename + "_" + $('input#name').val();
+	var filename = $('input#game').val() + "_GM";
+	if($('input#master').val() != '')
+		filename = filename + "_" + $('input#master').val();
 	exportFile(filename);
 }
 
@@ -40,12 +39,21 @@ function importMaster() {
 // 		console.log("Populate with "+reader.result);
 		var data = JSON.parse(reader.result);
 		//Verify that the game is valid, otherwise exit without modifying the sheet
-		if(data.game == $('input#game').val()){
+		var error = '';
+		
+		if(data.game != $('input#game').val()){
+			error="game does not match.";
+		}
+		if(data.tid == undefined || data.master == ''){
+			error="missing or incorrect table number.";
+		}
+		
+		if(error == ''){
 			populate(formElement, data);
 			
 			generateTID();
 		}else{
-			alert("Character sheet is invalid, game does not match");
+			alert("Game Master sheet is invalid, "+error);
 		}
 	};
 	reader.readAsText(file);
@@ -182,8 +190,8 @@ function createMQTTClient() {
 function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
+	storeSheet(client, clientId);
 //TODO REDO FOR ALL PLAYERS IN THE LIST 	addPlayerListeners();
-	//TODO ? storeSheet(client, clientId);
 }
 
 //Called when the client loses its connection

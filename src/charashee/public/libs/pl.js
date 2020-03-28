@@ -4,9 +4,9 @@ var clientId;
 $( document ).ready(function() {
 	retrieveSheet();
 	
-	generateUUID();
-
 	setInputListeners();
+	
+	generateUUID();
   
 	$('#joinTable').click(joinTable);
 	$('#export').click(exportPlayer);
@@ -39,14 +39,22 @@ function importPlayer() {
 		var formElement = document.getElementById('charashee');
 // 		console.log("Populate with "+reader.result);
 		var data = JSON.parse(reader.result);
-		delete data.uuid; //Remove UUID field to keep the current connection
-		//Verify that the game is valid, otherwise exit without modifying the sheet
-		if(data.game == $('input#game').val()){
+		var error = '';
+		
+		if(data.game != $('input#game').val()){
+			error="game does not match.";
+		}
+		if(data.uuid == undefined || data.uuid == ''){
+			error="missing or incorrect player number.";
+		}
+		
+		if(error == ''){
+			delete data.uuid; //Remove UUID field to keep the current connection
 			populate(formElement, data);
 			
-			generateUUID();
+			generateTID();
 		}else{
-			alert("Character sheet is invalid, game does not match");
+			alert("Character sheet is invalid, "+error);
 		}
 	};
 	reader.readAsText(file);
