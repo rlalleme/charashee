@@ -30,6 +30,11 @@ function connectToPlayer(player) {
 	askForUpdate(channel);
 }
 
+function disconnectFromPlayer(player) {
+	var channel = 'PL'+player;
+	client.unsubscribe(channel);
+}
+
 //Listen to players update (called only on the first connection)
 // function addPlayerListeners() {
 // 	$('ul li input[name^="player"]').each(function(i){
@@ -55,6 +60,14 @@ function createPlayer() {
 	getUUID(addPlayer);
 }
 
+//Delete the player entry and disconnect
+function removePlayer(player) {
+	disconnectFromPlayer(player);
+	
+	var player = document.getElementById(player);
+	player.parentNode.removeChild(player);
+}
+
 //Create a new player line, provide it with a UUID
 function addPlayer(playerId) {
 	//Create player data
@@ -67,9 +80,15 @@ function addPlayer(playerId) {
 
 	//Create player display
 	var playerLine = document.createElement("li");
+	playerLine.setAttribute("id", playerId);
+	
+	var remove = document.createElement("button");
+	remove.setAttribute("type", "button");
+	remove.setAttribute("onclick","removePlayer('"+playerId+"')");
+	remove.appendChild(document.createTextNode("-"));
+	playerLine.appendChild(remove);
 	
 	var uuid = document.createElement("span");
-	uuid.setAttribute("id", "player10");
 	uuid.appendChild(document.createTextNode(playerId));
 	playerLine.appendChild(uuid);
 	
@@ -136,7 +155,7 @@ function createMQTTClient() {
 function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
-	addPlayerListeners();
+//TODO REDO FOR ALL PLAYERS IN THE LIST 	addPlayerListeners();
 	//TODO ? storeSheet(client, clientId);
 }
 
