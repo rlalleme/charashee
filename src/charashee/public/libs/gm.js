@@ -11,6 +11,7 @@ $( document ).ready(function() {
 	setInputListeners();
 
 	$('#export').click(exportMaster);
+	$('#import').change(importMaster);
 });
 
 function setInputListeners() {
@@ -28,6 +29,26 @@ function exportMaster() {
 	if($('input#name').val() != '')
 		filename = filename + "_" + $('input#name').val();
 	exportFile(filename);
+}
+
+function importMaster() {
+	var file = document.getElementById('import').files[0];
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		var formElement = document.getElementById('charashee');
+// 		console.log("Populate with "+reader.result);
+		var data = JSON.parse(reader.result);
+		//Verify that the game is valid, otherwise exit without modifying the sheet
+		if(data.game == $('input#game').val()){
+			populate(formElement, data);
+			
+			generateTID();
+		}else{
+			alert("Character sheet is invalid, game does not match");
+		}
+	};
+	reader.readAsText(file);
 }
 
 //Connect one player

@@ -37,7 +37,7 @@ function importPlayer() {
 	
 	reader.onload = function(event) {
 		var formElement = document.getElementById('charashee');
-		console.log("Populate with "+reader.result);
+// 		console.log("Populate with "+reader.result);
 		var data = JSON.parse(reader.result);
 		delete data.uuid; //Remove UUID field to keep the current connection
 		//Verify that the game is valid, otherwise exit without modifying the sheet

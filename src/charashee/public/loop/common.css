@@ -1,0 +1,19 @@
+.btn {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	border-radius: 3px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	padding: 0px;
+	margin: 0px;
+/* 	min-height: 30px; */
+/* 	min-width: 75px; */
+	vertical-align: middle;
+/* 	margin: auto; */
+}
+.btn:hover {
+	background-color: #57c95a;
+}
