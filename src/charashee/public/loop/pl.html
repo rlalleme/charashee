@@ -1,15 +1,37 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<style>
+	.btn {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		border-radius: 3px;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 12px;
+		padding: 0px;
+		margin: 0px;
+/* 		min-height: 30px; */
+/* 		min-width: 75px; */
+		vertical-align: middle;
+/* 		margin: auto; */
+	}
+	.btn:hover {
+		background-color: #57c95a;
+	}
+	</style>
 </head>
 <body>
 PL
 
 <form id='charashee'>
-	<p><label for="uuid">UUID: </label><input type='text' id='uuid' name='uuid' readonly></input></p>
-	<p><label for="player">Player: </label><input type='text' id='player' name='player'></input></p>
-	<p><label for="character">Character: </label><input type='text' id='character' name='character'></input></p>
-	<p><label for="hp">Hit Points: </label><input type='number' id='hp' name='hp'></input></p>
+	<p><label for="uuid">UUID: </label><input type='text' id='uuid' name='uuid' readonly></p>
+	<p><label for="game">Game: </label><input type='text' id='game' name='game' readonly value="Template Game"></p>
+	<p><label for="player">Player: </label><input type='text' id='player' name='player'></p>
+	<p><label for="character">Character: </label><input type='text' id='character' name='character'></p>
+	<p><label for="hp">Hit Points: </label><input type='number' id='hp' name='hp'></p>
 	<p><label for="notes">Notes: </label><textarea id='notes' name='notes' placeholder='Notes'></textarea>
 </form>
 
