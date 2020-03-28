@@ -10,6 +10,7 @@ $( document ).ready(function() {
   
 	$('#joinTable').click(joinTable);
 	$('#export').click(exportPlayer);
+	$('#import').change(importPlayer);
 });
 
 function joinTable() {
@@ -29,6 +30,28 @@ function exportPlayer() {
 		filename = filename + "_" + $('input#character').val();
 	exportFile(filename);
 }
+
+function importPlayer() {
+	var file = document.getElementById('import').files[0];
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		var formElement = document.getElementById('charashee');
+		console.log("Populate with "+reader.result);
+		var data = JSON.parse(reader.result);
+		delete data.uuid; //Remove UUID field to keep the current connection
+		//Verify that the game is valid, otherwise exit without modifying the sheet
+		if(data.game == $('input#game').val()){
+			populate(formElement, data);
+			
+			generateUUID();
+		}else{
+			alert("Character sheet is invalid, game does not match");
+		}
+	};
+	reader.readAsText(file);
+}
+
 function setInputListeners() {
 	$("form#charashee :input").each(function(){
 		var input = $(this); 

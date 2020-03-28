@@ -41,8 +41,12 @@ PL
 </form>
 <-->
 
-<button id='joinTable'>joinTable</button>
-<button id='export'>export</button>
+<button id='joinTable' class='btn'>joinTable</button>
+<button id='export' class='btn'>export</button>
+<span>
+	<label for='import' class='btn'>import</label>
+	<input id='import' name='import' style='visibility:hidden;' type='file' accept='application/json,.json'>
+</span>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="../libs/paho-mqtt.js" type="text/javascript"></script>
