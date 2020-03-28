@@ -94,8 +94,7 @@ function addPlayer(playerId) {
 	
 	var info = document.createElement("input");
 	info.setAttribute("type", "text");
-	info.setAttribute("id", "info10");
-	info.setAttribute("name", "info10");
+	info.setAttribute("class", "content");
 	playerLine.appendChild(info);
 	
 	var link = document.createElement("a");
@@ -170,17 +169,9 @@ function onConnect() {
 function onMessageArrived(message) {
 	console.log("onMessageArrived:"+message.payloadString+' from: '+message.destinationName);
 	if(message.payloadString != 'request' && !message.payloadString.startsWith('join')) {
-		$('ul li input[name^="player"]').each(function(i){
-			var content = $(this).val();
-			if(content != undefined && content != '') {
-				var dest = 'PL'+$(this).val();
-				if(dest == message.destinationName) {
-					$(this).parent().children().eq(1).val(message.payloadString);
-					//TODO Here to fill the table content
-					storeSheet();
-				}
-			}
-		});
+		//TODO Here to fill the table content
+		$('#'+message.destinationName.substr(2)+' .content').val(message.payloadString);
+// 		storeSheet();
 	} else if(message.payloadString.startsWith('join')) {
 		var player = message.payloadString.substr(6);
 		console.log(player);
