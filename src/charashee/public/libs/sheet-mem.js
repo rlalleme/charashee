@@ -46,11 +46,12 @@ function retrieveSheet() {
 function exportFile(filename) {
 	var charHashtag = window.location.hash.substr(1);
 	var charData = LZString.decompressFromEncodedURIComponent(charHashtag);
+	var json = JSON.stringify(JSON.parse(charData), null, 2)
 
-	console.log(charData);
+	console.log(json);
 	
 	var element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(charData));
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
 	element.setAttribute('download', filename+'.json');
 
 	element.style.display = 'none';
