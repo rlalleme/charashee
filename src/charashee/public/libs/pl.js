@@ -7,7 +7,6 @@ $( document ).ready(function() {
 	createMQTTClient();
 
 	setInputListeners();
-// 	setChannelListener();
   
 //   $('#joinTable').click(joinTable);
 	$('#export').click(exportfn);
@@ -32,13 +31,6 @@ function setInputListeners() {
 	});
 }
 
-// function setChannelListener() {
-//   $('#uuid').change( function () {
-//     clientId = 'PL'+$('#uuid').val();
-//     client.subscribe(clientId);
-//   });
-// }
-
 //Connect to MQTT
 function createMQTTClient() {
 	clientId = $('#uuid').val();
@@ -59,7 +51,6 @@ function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
 	storeSheet(client, clientId);
-  
 }
 
 // //Called when the client loses its connection

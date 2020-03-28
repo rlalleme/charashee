@@ -6,12 +6,9 @@ $( document ).ready(function() {
 	
 	generateTID();
 
-	$('#addPlayer').click(addPlayer);
-
-	hideEmptyPlayers();
+	$('#addPlayer').click(createPlayer);
 
 	setInputListeners();
-// 	setChannelListener();
 
 	$('#export').click(exportfn);
 });
@@ -26,15 +23,6 @@ function setInputListeners() {
 	});
 }
 
-function hideEmptyPlayers() {
-	$('ul li input[name^="player"]').each(function(i){
-		var content = $(this).val();
-		if(content == undefined || content == '') {
-			$(this).parent().hide();
-		}
-	});
-}
-
 //Connect one player
 function connectToPlayer(player) {
 	var channel = 'PL'+player;
@@ -42,35 +30,63 @@ function connectToPlayer(player) {
 	askForUpdate(channel);
 }
 
-//Listen to palyers update (called only on the first connection)
-function addPlayerListeners() {
-	$('ul li input[name^="player"]').each(function(i){
-		var content = $(this).val();
-		if(content != undefined && content != '') {
-			connectToPlayer(content);
-		}
-	});
+//Listen to players update (called only on the first connection)
+// function addPlayerListeners() {
+// 	$('ul li input[name^="player"]').each(function(i){
+// 		var content = $(this).val();
+// 		if(content != undefined && content != '') {
+// 			connectToPlayer(content);
+// 		}
+// 	});
+// }
+
+//Copy the string to clipboard
+// function copyToClipboard(text) {
+// 	var textArea = document.createElement("textarea");
+// 	textArea.value = text;
+// 	document.body.appendChild(textArea);
+// 	textArea.select();
+// 	document.execCommand("Copy");
+// 	textArea.remove();
+// }
+
+//Detect the "Add Player" button, create the UUID and call the addPlayer
+function createPlayer() {
+	getUUID(addPlayer);
 }
 
 //Create a new player line, provide it with a UUID
-function addPlayer() {
-	//Generate UUID
-	getUUID(function(res) {
-		//Add input to form
-		var first = true;
-		$('ul li input[name^="player"]').each(function(i){
-			var content = $(this).val();
-			if((content == undefined || content == '') && first) {
-				first = false
-				$(this).val(res);
-				$(this).parent().show();
-				setInputListeners();
-				storeSheet();
-				connectToPlayer(res);
-			}
-		});
+function addPlayer(playerId) {
+	//Create player data
+	var playerStruct = { uuid: playerId };
+	var playerJSON = JSON.stringify(playerStruct);
+	var playerEncoded = LZString.compressToEncodedURIComponent(playerJSON);
+	var target=window.location.origin+window.location.pathname.replace("gm", "pl")+"#"+playerEncoded;
+	
+	connectToPlayer(playerId)
 
-	});
+	//Create player display
+	var playerLine = document.createElement("li");
+	
+	var uuid = document.createElement("span");
+	uuid.setAttribute("id", "player10");
+	uuid.appendChild(document.createTextNode(playerId));
+	playerLine.appendChild(uuid);
+	
+	var info = document.createElement("input");
+	info.setAttribute("type", "text");
+	info.setAttribute("id", "info10");
+	info.setAttribute("name", "info10");
+	playerLine.appendChild(info);
+	
+	var link = document.createElement("a");
+	link.setAttribute("href", target);
+	link.setAttribute("target", "_blank");
+	link.appendChild(document.createTextNode("Player's Link"));
+
+	playerLine.appendChild(link);
+	
+	$('ul#players').append(playerLine);
 }
 
 //If the TID exists connect the MQTT, otherwise create the TID and start the connection
@@ -80,7 +96,6 @@ function generateTID() {
 		//Generate TID
 		getUUID(function(res) {
 			$('#tid').val(res);
-			$('#tid').trigger('change');
 			clientId = 'GM'+res;
 			createMQTTClient();
 		});
@@ -89,13 +104,6 @@ function generateTID() {
 		createMQTTClient();
 	}
 }
-
-// function setChannelListener() {
-// 	$('#tid').change( function () {
-// 		clientId = 'GM'+$('#tid').val();
-// 		client.subscribe(clientId);
-// 	});
-// }
 
 //Calls the server to create a UUID
 function getUUID(callback) {
