@@ -4,7 +4,7 @@ var clientId;
 $( document ).ready(function() {
 	retrieveSheet();
 	
-	createMQTTClient();
+	generateUUID();
 
 	setInputListeners();
   
@@ -31,12 +31,33 @@ function setInputListeners() {
 	});
 }
 
+//If the Player has a UUID connect, otherwise create a UUID before connecting
+function generateUUID() {
+	clientId = $('#uuid').val();
+	if(clientId == undefined || clientId == ''){
+		//Generate UUID
+		getUUID(function(res) {
+			$('#uuid').val(res);
+			clientId = 'PL'+res;
+			createMQTTClient();
+		});
+	}else{
+		clientId =  'PL'+clientId
+		createMQTTClient();
+	}
+}
+
+//Calls the server to create a UUID
+function getUUID(callback) {
+	$.ajax({
+		url: "/uuid"
+	}).done(function(res) {
+		callback(res);
+	});
+}
+
 //Connect to MQTT
 function createMQTTClient() {
-	clientId = $('#uuid').val();
-	if(clientId == undefined || clientId == '')
-		clientId = Math.random()*100
-	clientId =  'PL'+clientId
 	client = new Paho.Client(location.hostname, 2883, clientId);
 
 // 	client.onConnectionLost = onConnectionLost;
