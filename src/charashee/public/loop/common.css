@@ -17,3 +17,7 @@
 .btn:hover {
 	background-color: #57c95a;
 }
+.card {
+	max-width: 350px;
+	min-width: 350px;
+}

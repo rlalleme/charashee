@@ -111,36 +111,71 @@ function addPlayer(playerId) {
 	var playerJSON = JSON.stringify(playerStruct);
 	var playerEncoded = LZString.compressToEncodedURIComponent(playerJSON);
 	var target=window.location.origin+window.location.pathname.replace("gm", "pl")+"#"+playerEncoded;
-	
-	connectToPlayer(playerId)
 
 	//Create player display
-	var playerLine = document.createElement("li");
-	playerLine.setAttribute("id", playerId);
+// 	var playerLine = document.createElement("li");
+// 	playerLine.setAttribute("id", playerId);
+// 	
+// 	var remove = document.createElement("button");
+// 	remove.setAttribute("type", "button");
+// 	remove.setAttribute("onclick","removePlayer('"+playerId+"')");
+// 	remove.appendChild(document.createTextNode("-"));
+// 	playerLine.appendChild(remove);
+// 	
+// 	var uuid = document.createElement("span");
+// 	uuid.appendChild(document.createTextNode(playerId));
+// 	playerLine.appendChild(uuid);
+// 	
+// 	var info = document.createElement("input");
+// 	info.setAttribute("type", "text");
+// 	info.setAttribute("class", "content");
+// 	playerLine.appendChild(info);
+// 	
+// 	var link = document.createElement("a");
+// 	link.setAttribute("href", target);
+// 	link.setAttribute("target", "_blank");
+// 	link.appendChild(document.createTextNode("Player's Link"));
+// 
+// 	playerLine.appendChild(link);
+// 	
+// 	$('ul#players').append(playerLine);
 	
-	var remove = document.createElement("button");
-	remove.setAttribute("type", "button");
-	remove.setAttribute("onclick","removePlayer('"+playerId+"')");
-	remove.appendChild(document.createTextNode("-"));
-	playerLine.appendChild(remove);
+// 	<div class="card">
+// 		<div class="card-body text-center">
+// 			<p class="card-text">Some text inside the first card</p>
+// 		</div>
+// 	</div>
+	var playerCard = document.createElement("div");
+	playerCard.setAttribute("class", "card w-25 m-1");
+	playerCard.setAttribute("id", playerId);
+	$('div#players').append(playerCard);
 	
-	var uuid = document.createElement("span");
-	uuid.appendChild(document.createTextNode(playerId));
-	playerLine.appendChild(uuid);
+	pc_body = document.createElement("div");
+	pc_body.setAttribute("class", "card-body");
+	playerCard.appendChild(pc_body);
 	
-	var info = document.createElement("input");
-	info.setAttribute("type", "text");
-	info.setAttribute("class", "content");
-	playerLine.appendChild(info);
+	pc_title = document.createElement("h4");
+	pc_title.setAttribute("class", "card-title character");
+	pc_title.appendChild(document.createTextNode("Character One"));
+	pc_body.appendChild(pc_title);
 	
-	var link = document.createElement("a");
-	link.setAttribute("href", target);
-	link.setAttribute("target", "_blank");
-	link.appendChild(document.createTextNode("Player's Link"));
-
-	playerLine.appendChild(link);
+	pc_player = document.createElement("p");
+	pc_player.setAttribute("class", "card-text");
+	pc_player.appendChild(document.createTextNode("Player One"));
+	pc_body.appendChild(pc_player);
 	
-	$('ul#players').append(playerLine);
+	pc_hp = document.createElement("progress");
+	pc_hp.setAttribute("class", "w-100 progress-bar");
+	pc_hp.setAttribute("max", 100);
+	pc_hp.setAttribute("value", 70);
+	pc_body.appendChild(pc_hp);
+	
+	pc_class = document.createElement("p");
+	pc_class.setAttribute("class", "card-text");
+	pc_class.appendChild(document.createTextNode("Druid"));
+	pc_body.appendChild(pc_class);
+	
+	connectToPlayer(playerId);
 }
 
 //If the TID exists connect the MQTT, otherwise create the TID and start the connection
