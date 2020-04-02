@@ -4,7 +4,7 @@ const maxLength = 65000
 function storeSheet(client, uuid) {
 	//Grab all the form data and put it into an array.
 	var result = {};
-	$.each($('form#charashee :input').serializeArray(), function() {
+	$.each($('form#charashee').serializeArray(), function() {
 		result[this.name] = this.value;
 	});
 	// Alert to show what's being saved for debugging purposes. Should be commented out in live
