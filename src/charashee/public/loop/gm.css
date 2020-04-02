@@ -1,0 +1,28 @@
+.card {
+	max-width: 350px;
+	min-width: 350px;
+}
+.hp_field {
+	width: 40%;
+}
+.card input {
+	border: none;
+}
+
+/* Hide arrow buttons on number input */
+/* Chrome, Safari, Edge, Opera */
+.card input::-webkit-outer-spin-button,
+.card input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+.card input[type=number] {
+	-moz-appearance: textfield;
+}
+
+/* Make Player card title placeholder dense for style */
+.card h4 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	opacity: 1; /* Firefox */
+}
