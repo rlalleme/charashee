@@ -177,12 +177,20 @@ function onConnect() {
 //Called when a message arrives
 function onMessageArrived(message) {
 	console.log("onMessageArrived:"+message.payloadString+' from: '+message.destinationName);
-	if(message.payloadString != 'request' && !message.payloadString.startsWith('join')) {
-		//TODO Here to fill the table content
-		$('#'+message.destinationName.substr(2)+' .content').val(message.payloadString);
-// 		storeSheet();
-	} else if(message.payloadString.startsWith('join')) {
+	if(message.payloadString.startsWith('join')) {
 		var player = message.payloadString.substr(6); //Remove 'joinPL' at the beginning
 		addPlayer(player);
+		fillPlayerSheet(player, message.payloadString);
+	} else if(message.payloadString != 'request' && !message.payloadString.startsWith('join')) {
+		var player = message.destinationName.substr(2); //Remove 'PL' at the beginning
+		fillPlayerSheet(player, message.payloadString);
+// 		storeSheet();
+	}
+}
+
+function fillPlayerSheet(player, content){
+	var playerCard = document.getElementById(player);
+	if(playerCard != undefined && playerCard != ""){
+		populate(playerCard, JSON.parse(content));
 	}
 }
