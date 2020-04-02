@@ -100,8 +100,7 @@ function createPlayer() {
 function removePlayer(player) {
 	disconnectFromPlayer(player);
 	
-	var player = document.getElementById(player);
-	player.parentNode.removeChild(player);
+	removePlayerElements(player);
 }
 
 //Create a new player line, provide it with a UUID
@@ -112,68 +111,7 @@ function addPlayer(playerId) {
 	var playerEncoded = LZString.compressToEncodedURIComponent(playerJSON);
 	var target=window.location.origin+window.location.pathname.replace("gm", "pl")+"#"+playerEncoded;
 
-	//Create player display
-// 	var playerLine = document.createElement("li");
-// 	playerLine.setAttribute("id", playerId);
-// 	
-// 	var remove = document.createElement("button");
-// 	remove.setAttribute("type", "button");
-// 	remove.setAttribute("onclick","removePlayer('"+playerId+"')");
-// 	remove.appendChild(document.createTextNode("-"));
-// 	playerLine.appendChild(remove);
-// 	
-// 	var uuid = document.createElement("span");
-// 	uuid.appendChild(document.createTextNode(playerId));
-// 	playerLine.appendChild(uuid);
-// 	
-// 	var info = document.createElement("input");
-// 	info.setAttribute("type", "text");
-// 	info.setAttribute("class", "content");
-// 	playerLine.appendChild(info);
-// 	
-// 	var link = document.createElement("a");
-// 	link.setAttribute("href", target);
-// 	link.setAttribute("target", "_blank");
-// 	link.appendChild(document.createTextNode("Player's Link"));
-// 
-// 	playerLine.appendChild(link);
-// 	
-// 	$('ul#players').append(playerLine);
-	
-// 	<div class="card">
-// 		<div class="card-body text-center">
-// 			<p class="card-text">Some text inside the first card</p>
-// 		</div>
-// 	</div>
-	var playerCard = document.createElement("div");
-	playerCard.setAttribute("class", "card w-25 m-1");
-	playerCard.setAttribute("id", playerId);
-	$('div#players').append(playerCard);
-	
-	pc_body = document.createElement("div");
-	pc_body.setAttribute("class", "card-body");
-	playerCard.appendChild(pc_body);
-	
-	pc_title = document.createElement("h4");
-	pc_title.setAttribute("class", "card-title character");
-	pc_title.appendChild(document.createTextNode("Character One"));
-	pc_body.appendChild(pc_title);
-	
-	pc_player = document.createElement("p");
-	pc_player.setAttribute("class", "card-text");
-	pc_player.appendChild(document.createTextNode("Player One"));
-	pc_body.appendChild(pc_player);
-	
-	pc_hp = document.createElement("progress");
-	pc_hp.setAttribute("class", "w-100 progress-bar");
-	pc_hp.setAttribute("max", 100);
-	pc_hp.setAttribute("value", 70);
-	pc_body.appendChild(pc_hp);
-	
-	pc_class = document.createElement("p");
-	pc_class.setAttribute("class", "card-text");
-	pc_class.appendChild(document.createTextNode("Druid"));
-	pc_body.appendChild(pc_class);
+	addPlayerElements(playerId, target);
 	
 	connectToPlayer(playerId);
 }
