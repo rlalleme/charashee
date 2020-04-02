@@ -3,6 +3,7 @@ var clientId;
 
 $( document ).ready(function() {
 	retrieveSheet();
+	setPageTitle();
 	
 	setInputListeners();
 
@@ -19,8 +20,16 @@ function setInputListeners() {
 		input.unbind();
 		input.change(function() {
 			storeSheet();
+			setPageTitle();
 		});
 	});
+}
+
+function setPageTitle() {
+	var pageTitle = "Game Master" + " · " + $('input#game').val();
+	if($('input#master').val() != '')
+		pageTitle = $('input#master').val() + " · " + pageTitle;
+	$(document).attr("title", pageTitle);
 }
 
 function exportMaster() {

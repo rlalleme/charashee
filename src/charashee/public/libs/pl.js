@@ -3,6 +3,7 @@ var clientId;
 
 $( document ).ready(function() {
 	retrieveSheet();
+	setPageTitle();
 	
 	setInputListeners();
 	
@@ -66,8 +67,19 @@ function setInputListeners() {
 		input.unbind();
 		input.change(function() {
 			storeSheet(client, clientId);
+			setPageTitle();
 		});
 	});
+}
+
+
+function setPageTitle() {
+	var pageTitle = $('input#game').val();
+	if($('input#player').val() != '')
+		pageTitle = $('input#player').val() + " · " + pageTitle;
+	if($('input#character').val() != '')
+		pageTitle = $('input#character').val() + " · " + pageTitle;
+	$(document).attr("title", pageTitle);
 }
 
 //If the Player has a UUID connect, otherwise create a UUID before connecting
