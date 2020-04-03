@@ -16,7 +16,6 @@
 	-webkit-appearance: none;
 	margin: 0;
 }
-
 /* Firefox */
 .card input[type=number] {
 	-moz-appearance: textfield;
@@ -25,4 +24,13 @@
 /* Make Player card title placeholder dense for style */
 .card h4 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	opacity: 1; /* Firefox */
+}
+
+/* Make the "remove player" nicer */
+.rm-player {
+	background-color: #ffffff;
+	font-size: 1em;
+}
+.rm-player:hover {
+	color: #d27979;
 }
