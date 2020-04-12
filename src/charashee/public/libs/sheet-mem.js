@@ -88,7 +88,17 @@ function retrieveSheet() {
 	// Decompress hashtag to json string
 	var charData = LZString.decompressFromEncodedURIComponent(charHashtag);
 	// Parse JSON data
-	var data = JSON.parse(charData);
+	var data;
+	try{
+		data = JSON.parse(charData);
+	}catch(error){
+		data=="";
+		window.location.href=window.location.origin+window.location.pathname;
+	}
+	if(data == undefined || data == ""){
+		return;
+	}
+	
 	// Browse all containing elements (should all be forms)
 	for(var property in data){
 		if(data.hasOwnProperty(property)){
