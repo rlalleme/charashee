@@ -1,0 +1,44 @@
+@import "gauge"
+
+body {
+  background: #387FC1
+}
+
+.border {
+  &.border-main {
+    border-color: #387FC1 !important
+  }
+}
+
+.text-main {
+  color: #387FC1
+}
+
+.bg-lightblue {
+  background: #d0e4f7
+}
+
+.legend {
+  text-transform: uppercase
+}
+
+.input-field>label {
+    color: black
+    padding-left: 5px
+    &:not(.label-icon).active {
+      transform: translateY(-16px) scale(0.8);
+    }
+}
+
+input[type="text"]:not(.browser-default) {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}

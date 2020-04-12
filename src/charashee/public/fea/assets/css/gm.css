@@ -1,0 +1,30 @@
+/* Hide arrow buttons on number input */
+/* Chrome, Safari, Edge, Opera */
+.card input::-webkit-outer-spin-button,
+.card input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+/* Firefox */
+.card input[type=number] {
+	-moz-appearance: textfield;
+}
+
+/* Make Player card title placeholder dense for style */
+.card h4 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	opacity: 1; /* Firefox */
+}
+/* Make the "remove player" nicer */
+.rm-player:hover {
+	background-color: #d27979 !important;
+}
+
+/* Reduce the size of the elements in a player's card */
+.card .input-field {
+	margin-top: 0.5em !important;
+	margin-bottom: 0 !important;
+}
+
+.short-cards {
+	padding-bottom: 0 !important;
+}
