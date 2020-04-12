@@ -11,12 +11,17 @@
 </head>
 <body>
 GM
-<form id='charashee'>
+<form id='gm-info' class='toSave'>
 	<p><label for='tid'>Table ID: </label><input type='text' id='tid' name='tid' readonly></p>
 	<p><label for='game'>Game: </label><input type='text' id='game' name='game' readonly value='Template Game'></p>
 	<p><label for='master'>Name: </label><input type='text' id='master' name='master'></p>
 	<p><label for='notes'>Notes: </label><textarea id='notes' name='notes' placeholder='Notes'></textarea></p>
 </form>
+
+<ul style="display:none">
+<form id='players' class='toSave'>
+</form>
+</ul>
 
 <p>Players: <p>
 <div><button id='addPlayer' class='btn'>addPlayer</button></div>
