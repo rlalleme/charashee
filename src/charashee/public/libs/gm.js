@@ -9,6 +9,7 @@ $( document ).ready(function() {
 
 	setInputListeners();
 
+	retrievePlayers();
 
 	$('#addPlayer').click(createPlayer);
 	$('#export').click(exportMaster);
@@ -69,6 +70,26 @@ function importMaster() {
 	reader.readAsText(file);
 }
 
+function retrievePlayers(){
+	var charHashtag = window.location.hash.substr(1);
+	if(charHashtag == undefined || charHashtag == ""){
+		return;
+	}
+	var charData = LZString.decompressFromEncodedURIComponent(charHashtag);
+	var data = JSON.parse(charData);
+	
+	var listOfPlayers = data.players;
+	if(listOfPlayers != undefined && listOfPlayers != ""){
+		for(player in listOfPlayers){
+			var playerId=player;
+			var playerContent=JSON.parse(listOfPlayers[player]);
+			
+			addPlayer(playerId, playerContent);
+			fillPlayerSheet(player, listOfPlayers[player]);
+		}
+	}
+}
+
 //Connect one player
 function connectToPlayer(player) {
 	var channel = 'PL'+player;
@@ -82,14 +103,14 @@ function disconnectFromPlayer(player) {
 }
 
 //Listen to players update (called only on the first connection)
-// function addPlayerListeners() {
-// 	$('ul li input[name^="player"]').each(function(i){
-// 		var content = $(this).val();
-// 		if(content != undefined && content != '') {
-// 			connectToPlayer(content);
-// 		}
-// 	});
-// }
+function addPlayerListeners() {
+	$('form#players :input').each(function(i){
+		var playerId = this.id;
+		if(playerId != undefined && playerId != '') {
+			connectToPlayer(playerId);
+		}
+	});
+}
 
 //Copy the string to clipboard
 // function copyToClipboard(text) {
@@ -103,14 +124,23 @@ function disconnectFromPlayer(player) {
 
 //Detect the "Add Player" button, create the UUID and call the addPlayer
 function createPlayer() {
-	getUUID(addPlayer);
+	getUUID(function(res){
+		addPlayer(res);
+		connectToPlayer(res);
+	});
 }
 
 //Delete the player entry and disconnect
-function removePlayer(player) {
-	disconnectFromPlayer(player);
+function removePlayer(playerId) {
+	disconnectFromPlayer(playerId);
 	
-	removePlayerElements(player);
+	var playerLine=document.getElementById(playerId);
+	var playerLi=playerLine.parentNode;
+	playerLi.parentNode.removeChild(playerLi);
+	
+	removePlayerElements(playerId);
+	
+	storeSheet();
 }
 
 //Create a new player line, provide it with a UUID
@@ -125,7 +155,6 @@ function addPlayer(playerId, playerContent) {
 
 	addPlayerElements(playerId, createPlayerLink(playerId, playerJSON));
 	$("#players").append('<li><textarea id="'+playerId+'" name="'+playerId+'">'+playerJSON+'</textarea></li>');
-	
 }
 
 function createPlayerLink(playerId, playerContent) {
@@ -182,6 +211,7 @@ function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
 	storeSheet();
+	addPlayerListeners();
 }
 
 //Called when the client loses its connection
