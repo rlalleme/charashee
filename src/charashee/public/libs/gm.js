@@ -3,11 +3,12 @@ var clientId;
 
 $( document ).ready(function() {
 	retrieveSheet();
-	setPageTitle();
+	generateTID();
 	
+	setPageTitle();
+
 	setInputListeners();
 
-	generateTID();
 
 	$('#addPlayer').click(createPlayer);
 	$('#export').click(exportMaster);
@@ -15,7 +16,7 @@ $( document ).ready(function() {
 });
 
 function setInputListeners() {
-	$("form#charashee :input").each(function(){
+	$("form.toSave :input").each(function(){
 		var input = $(this); 
 		input.unbind();
 		input.change(function() {
@@ -72,7 +73,7 @@ function importMaster() {
 function connectToPlayer(player) {
 	var channel = 'PL'+player;
 	client.subscribe(channel);
-	askForUpdate(channel);
+// 	askForUpdate(channel);
 }
 
 function disconnectFromPlayer(player) {
@@ -113,16 +114,24 @@ function removePlayer(player) {
 }
 
 //Create a new player line, provide it with a UUID
-function addPlayer(playerId) {
-	//Create player data
-	var playerStruct = { uuid: playerId };
-	var playerJSON = JSON.stringify(playerStruct);
-	var playerEncoded = LZString.compressToEncodedURIComponent(playerJSON);
-	var target=window.location.origin+window.location.pathname.replace("gm", "pl")+"#"+playerEncoded;
+function addPlayer(playerId, playerContent) {
+	if(playerContent == undefined || playerContent == ""){
+		//Create player data
+		var playerStruct = { charashee: { playerId: playerId } }; //TODO ROBUSTIFY/MAKE CROSS GAME
+		var playerJSON = JSON.stringify(playerStruct);
+	}else{
+		var playerJSON = JSON.stringify(playerContent);
+	}
 
-	addPlayerElements(playerId, target);
+	addPlayerElements(playerId, createPlayerLink(playerId, playerJSON));
+	$("#players").append('<li><textarea id="'+playerId+'" name="'+playerId+'">'+playerJSON+'</textarea></li>');
 	
-	connectToPlayer(playerId);
+}
+
+function createPlayerLink(playerId, playerContent) {
+	var playerEncoded = LZString.compressToEncodedURIComponent(playerContent);
+	var target=window.location.origin+window.location.pathname.replace("gm", "pl")+"#"+playerEncoded;
+	return target;
 }
 
 //If the TID exists connect the MQTT, otherwise create the TID and start the connection
@@ -172,8 +181,7 @@ function createMQTTClient() {
 function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
-	storeSheet(client, clientId);
-//TODO REDO FOR ALL PLAYERS IN THE LIST 	addPlayerListeners();
+	storeSheet();
 }
 
 //Called when the client loses its connection
@@ -193,13 +201,35 @@ function onMessageArrived(message) {
 	} else if(message.payloadString != 'request' && !message.payloadString.startsWith('join')) {
 		var player = message.destinationName.substr(2); //Remove 'PL' at the beginning
 		fillPlayerSheet(player, message.payloadString);
-// 		storeSheet();
 	}
 }
 
 function fillPlayerSheet(player, content){
-	var playerCard = document.getElementById(player);
-	if(playerCard != undefined && playerCard != ""){
-		populate(playerCard, JSON.parse(content));
+	var playerCard = document.getElementById(player+"_card");
+	if(playerCard == undefined || playerCard == ""){
+		return;
 	}
+
+	//First update the player element
+	var data=JSON.parse(content);
+	for(var property in data){
+		if(data.hasOwnProperty(property)){
+			var index=property,value=data[property];
+			if("object"==typeof value){
+				var formElement = $("#"+player+"_"+index)[0]; //Why do I need a [0]
+				if(formElement != undefined && formElement != ""){
+					populate(formElement, value);
+				}
+			}
+		}
+	}
+	
+	//Then update the player stored field
+	var playerSave = document.getElementById(player);
+	playerSave.replaceChild(document.createTextNode(content), playerSave.childNodes[0]);
+
+	//Update the player link with its data
+	$("#"+player+"_link")[0].href=createPlayerLink(player, content);
+	
+	storeSheet();
 }
