@@ -8,6 +8,10 @@ $( document ).ready(function() {
 	setInputListeners();
 	
 	generateUUID();
+	
+	if (typeof refreshPageDisplay === "function") {
+		refreshPageDisplay();
+	}
   
 	$('#joinTable').click(joinTable);
 	$('#export').click(exportPlayer);

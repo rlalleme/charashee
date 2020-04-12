@@ -262,4 +262,8 @@ function fillPlayerSheet(player, content){
 	$("#"+player+"_link")[0].href=createPlayerLink(player, content);
 	
 	storeSheet();
+	
+	if (typeof refreshPageDisplay === "function") {
+		refreshPageDisplay();
+	}
 }
