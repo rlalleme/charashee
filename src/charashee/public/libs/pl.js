@@ -62,7 +62,7 @@ function importPlayer() {
 }
 
 function setInputListeners() {
-	$("form#charashee :input").each(function(){
+	$("form.toSave :input").each(function(){
 		var input = $(this); 
 		input.unbind();
 		input.change(function() {
@@ -84,11 +84,11 @@ function setPageTitle() {
 
 //If the Player has a UUID connect, otherwise create a UUID before connecting
 function generateUUID() {
-	clientId = $('#uuid').val();
+	clientId = $('#playerId').val();
 	if(clientId == undefined || clientId == ''){
 		//Generate UUID
 		getUUID(function(res) {
-			$('#uuid').val(res);
+			$('#playerId').val(res);
 			clientId = 'PL'+res;
 			createMQTTClient();
 		});
