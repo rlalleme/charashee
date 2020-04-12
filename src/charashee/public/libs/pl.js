@@ -37,23 +37,19 @@ function importPlayer() {
 	var reader = new FileReader();
 	
 	reader.onload = function(event) {
-		var formElement = document.getElementById('charashee');
-// 		console.log("Populate with "+reader.result);
 		var data = JSON.parse(reader.result);
 		var error = '';
 		
-		if(data.game != $('input#game').val()){
+		if(data['charashee']['game'] != $('input#game').val()){
 			error="game does not match.";
-		}
-		if(data.uuid == undefined || data.uuid == ''){
-			error="missing or incorrect player number.";
 		}
 		
 		if(error == ''){
-			delete data.uuid; //Remove UUID field to keep the current connection
-			populate(formElement, data);
-			
-			generateTID();
+			data['charashee']['playerId']=$('input#playerId').val(); //Replace UUID field to keep the current connection
+			var plPage = LZString.compressToEncodedURIComponent(JSON.stringify(data));
+			var target=window.location.origin+window.location.pathname+"#"+plPage;
+			window.location.href = target;
+			window.location.reload(true);
 		}else{
 			alert("Character sheet is invalid, "+error);
 		}

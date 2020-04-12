@@ -46,23 +46,23 @@ function importMaster() {
 	var reader = new FileReader();
 	
 	reader.onload = function(event) {
-		var formElement = document.getElementById('charashee');
-// 		console.log("Populate with "+reader.result);
 		var data = JSON.parse(reader.result);
-		//Verify that the game is valid, otherwise exit without modifying the sheet
 		var error = '';
 		
-		if(data.game != $('input#game').val()){
+		//Verify that the game is valid, otherwise exit without modifying the sheet
+		if(data['gm-info']['game'] != $('input#game').val()){
 			error="game does not match.";
 		}
-		if(data.tid == undefined || data.master == ''){
+		if(data['gm-info']['tid'] == undefined || data['gm-info']['tid'] == ''){
 			error="missing or incorrect table number.";
 		}
 		
 		if(error == ''){
-			populate(formElement, data);
-			
-			generateTID();
+			//Instead of manually loading all data redirect to the page with all the content
+			var gmPage = LZString.compressToEncodedURIComponent(JSON.stringify(data));
+			var target=window.location.origin+window.location.pathname+"#"+gmPage;
+			window.location.href = target;
+			window.location.reload(true);
 		}else{
 			alert("Game Master sheet is invalid, "+error);
 		}
