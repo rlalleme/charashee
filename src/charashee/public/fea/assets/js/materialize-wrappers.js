@@ -1,0 +1,3 @@
+function refreshPageDisplay(){
+	M.updateTextFields();
+}

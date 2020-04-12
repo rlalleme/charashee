@@ -1,72 +1,235 @@
 <html>
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="pl.css">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script>
-	$(document).ready(function() {
-		$(window).keydown(function(event){
-			if((event.keyCode == 13)){
-				event.preventDefault();
-				return false;
-			}
-		});
-		$("form :input").each(function(){
-			var input = $(this);
-			input.unbind();
-			input.change(function() {});
-		});
-	});
-	</script>
-</head>
-<body>
-<h1>Fate</h1>
+	<head>
+		<meta charset="UTF-8">
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	</head>
 
-<form>
-	<fieldset>
-		<legend>Identité</legend>
-		<p><input type="text" id="joueur" name="joueur" placeholder="Joueur"></p>
-		<p><input type="text" id="nom" name="nom" placeholder="Nom"></p>
-		<p><textarea id="descr" name="descr" placeholder="Description"></textarea></p>
-	</fieldset>
-	<fieldset>
-		<legend>Fate</legend>
-		<p><input type="number" id="restauration" name="restauration" min="0" max="10" placeholder="restauration">
-		<p><input type="number" id="points_fate" name="points_fate" min="0" max="10" placeholder="Points Fate">
-	</fieldset>
-	<fieldset>
-		<legend>Aspects</legend>
-		<p><input type="text" id="aspect1" name="aspect1" placeholder="Concept"></p>
-		<p><input type="text" id="aspect2" name="aspect2" placeholder="Problème"></p>
-		<p><input type="text" id="aspect3" name="aspect3"></p>
-		<p><input type="text" id="aspect4" name="aspect4"></p>
-		<p><input type="text" id="aspect5" name="aspect5"></p>
-	</fieldset>
-	<fieldset>
-		<legend>Approches</legend>
-		<p><label for="astucieux">Astucieux</label><input type="number" id="astucieux" name="astucieux" min="0" max="10">
-		<p><label for="flamboyant">Flamboyant</label><input type="number" id="flamboyant" name="flamboyant" min="0" max="10">
-		<p><label for="puissant">Puissant</label><input type="number" id="puissant" name="puissant" min="0" max="10">
-		<p><label for="rapide">Rapide</label><input type="number" id="rapide" name="rapide" min="0" max="10">
-		<p><label for="soigneux">Soigneux</label><input type="number" id="soigneux" name="soigneux" min="0" max="10">
-		<p><label for="sournois">Sournois</label><input type="number" id="sournois" name="sournois" min="0" max="10">
-	</fieldset>
-	<fieldset>
-		<legend>Prouesses</legend>
-		<p><textarea id="prouesses" name="prouesses" placeholder="Prouesses"></textarea></p>
-	</fieldset>
-	<fieldset>
-		<legend>Stress</legend>
-		<p><label for="stress1">1</label><input type="checkbox" id="stress1" name="stress1">
-		<p><label for="stress2">2</label><input type="checkbox" id="stress2" name="stress2">
-		<p><label for="stress3">3</label><input type="checkbox" id="stress3" name="stress3">
-	</fieldset>
-	<fieldset>
-		<legend>Conséquences</legend>
-		<p><label for="consequ_legere">2</label><input type="text" id="consequ_legere" name="consequ_legere" placeholder="Légère"></p>
-		<p><label for="consequ_moderee">4</label><input type="text" id="consequ_moderee" name="consequ_moderee" placeholder="Modérée"></p>
-		<p><label for="consequ_lourde">6</label><input type="text" id="consequ_lourde" name="consequ_lourde" placeholder="Lourde"></p>
-	</fieldset>
-</form>
-</body>
+	<body>
+		<form class="toSave"  id="charashee" style="display:none;">
+			<input name="playerId" id="playerId" type="text" readonly>
+			<input name="game" id="game" value="Fate Édition Accélérée">
+		</form>
+		<div class="container">
+
+			<div class="card">
+				<div class="card-content">
+					<form class="mt-5 toSave" id="character-sheet">
+						<div class="row">
+							<div class="col m12 l8">
+								<fieldset>
+									<legend class="text-main legend">Identité</legend>
+
+									<div class="row">
+										<div class="col m12 l6">
+											<div class="input-field">
+												<label for="player">Joueur :</label>
+												<input type="text" class="validate form-control" id="player" name="player">
+											</div>
+										</div>
+
+										<div class="col m12 l6">
+											<div class="input-field">
+												<label for="character">Nom du personnage :</label>
+												<input type="text" class="validate" id="character" name="character">
+											</div>
+										</div>
+									</div>
+
+									<div class="input-field">
+										<i class="material-icons prefix">description</i>
+										<label for="descr">Description</label>
+										<textarea class="materialize-textarea" id="descr" name="descr"></textarea>
+									</div>
+								</fieldset>
+							</div>
+
+							<div class="col m12 l4">
+								<div class="center-align">
+									<img src="assets/img/logo.png" alt="" style="max-width: 200px; width: 100%" />
+								</div>
+
+								<div class="row" style="margin-top: 15px">
+									<div class="col m12 l6">
+										<div class="input-field">
+											<label for="restauration">Restauration</label>
+											<input type="number" class="validate" id="restauration" name="restauration">
+										</div>
+									</div>
+									<div class="col m12 l6">
+										<div class="input-field">
+											<label for="points_fate">Points Fate</label>
+											<input type="number" class="validate" id="points_fate" name="points_fate">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+							<div class="row">
+								<div class="col m12 l6">
+									<fieldset class="mt-3">
+										<legend class="text-main legend">Aspects</legend>
+
+										<div class="input-field">
+											<label for="aspect1">Concept :</label>
+								      <input type="text" class="validate" id="aspect1" name="aspect[1]">
+									  </div>
+
+										<div class="input-field">
+											<label for="aspect2">Problème :</label>
+								      <input type="text" class="validate" id="aspect2" name="aspect[2]">
+									  </div>
+
+										<div class="input-field">
+											<input type="text" class="validate" id="aspect3" name="aspect[3]">
+										</div>
+
+										<div class="input-field">
+											<input type="text" class="validate" id="aspect4" name="aspect[4]">
+										</div>
+
+										<div class="input-field">
+											<input type="text" class="validate" id="aspect5" name="aspect[5]">
+										</div>
+									</fieldset>
+								</div>
+
+								<div class="col m12 l6">
+									<fieldset>
+										<legend class="text-main legend">Approches</legend>
+
+										<div class="input-field">
+											<label for="astucieux">Astucieux</label>
+								      <input type="text" class="validate" id="astucieux" name="astucieux">
+									  </div>
+
+										<div class="input-field">
+											<label for="flamboyant">Flamboyant</label>
+								      <input type="text" class="validate" id="flamboyant" name="flamboyant">
+									  </div>
+
+										<div class="input-field">
+											<label for="puissant">Puissant</label>
+								      <input type="text" class="validate" id="puissant" name="puissant">
+									  </div>
+
+										<div class="input-field">
+											<label for="rapide">Rapide</label>
+								      <input type="text" class="validate" id="rapide" name="rapide">
+									  </div>
+
+										<div class="input-field">
+											<label for="soigneux">Soigneux</label>
+								      <input type="text" class="validate" id="soigneux" name="soigneux">
+									  </div>
+
+										<div class="input-field">
+											<label for="sournois">Sournois</label>
+								      <input type="text" class="validate" id="sournois" name="sournois">
+									  </div>
+								</fieldset>
+								</div>
+							</div>
+
+						<div class="row">
+							<div class="col m12 l12">
+								<fieldset>
+									<legend class="text-main legend">Prouesses</legend>
+									<div class="input-field">
+										<i class="material-icons prefix">description</i>
+										<textarea class="materialize-textarea" id="prouesses" name="prouesses" rows="10"></textarea>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col m12 l4">
+								<fieldset>
+									<legend class="text-main legend">Stress</legend>
+
+									<div id="gauge2" class="gauge-container two" style="max-width: 200px;margin: 0 auto;"></div>
+
+									<p class="center-align">
+										<label>
+											<input class="with-gap" id="stress0" name="stress" type="radio" value="0" checked/>
+											<span>0</span>
+										</label>
+									</p>
+									<p class="center-align">
+										<label>
+											<input class="with-gap" id="stress1" name="stress" type="radio" value="1"/>
+											<span>1</span>
+										</label>
+									</p>
+									<p class="center-align">
+										<label>
+											<input class="with-gap" id="stress2" name="stress" type="radio" value="2"/>
+											<span>2</span>
+										</label>
+									</p>
+									<p class="center-align">
+										<label>
+											<input class="with-gap" id="stress3" name="stress" type="radio" value="3"/>
+											<span>3</span>
+										</label>
+									</p>
+								</fieldset>
+							</div>
+
+							<div class="col m12 l8">
+								<fieldset>
+									<legend class="text-main legend">Conséquences</legend>
+
+									<div class="input-field">
+										<label for="consequ_legere"><b>2</b> <small>(Légère)</small></label>
+							      <input type="text" class="validate" id="consequ_legere" name="consequ_legere">
+								  </div>
+
+									<div class="input-field">
+										<label for="consequ_moderee"><b>4</b> <small>(Modérée)</small></label>
+							      <input type="text" class="validate" id="consequ_moderee" name="consequ_moderee">
+								  </div>
+
+									<div class="input-field">
+										<label for="consequ_lourde"><b>6</b> <small>(Légère)</small></label>
+							      <input type="text" class="validate" id="consequ_lourde" name="consequ_lourde">
+								  </div>
+								</fieldset>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container center-align">
+			<button id='joinTable' class='btn'>Join a table</button>
+			<button id='export' class='btn'>Export</button>
+			<span>
+				<label for='import' class='btn'>Import</label>
+				<input id='import' name='import' style='display:none;' type='file' accept='application/json,.json'>
+			</span>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+		<!-- Gauge -->
+		<script src="assets/js/gauge/gauge.js" type="text/javascript"></script>
+
+		<script src="assets/js/main.js" type="text/javascript"></script>
+		
+		<script src="../libs/paho-mqtt.js" type="text/javascript"></script>
+		<script src="../libs/populate.js" type="text/javascript"></script>
+		<script src="../libs/lzstring.js" type="text/javascript"></script>
+		<script src="../libs/sheet-mem.js" type="text/javascript"></script>
+		<script src="assets/js/materialize-wrappers.js" type="text/javascript"></script>
+		<script src="../libs/pl.js" type="text/javascript"></script>
+	</body>
 </html>
