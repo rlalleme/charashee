@@ -10,7 +10,7 @@ $( document ).ready(function() {
 	setInputListeners();
 
 	retrievePlayers();
-
+	
 	$('#addPlayer').click(createPlayer);
 	$('#export').click(exportMaster);
 	$('#import').change(importMaster);

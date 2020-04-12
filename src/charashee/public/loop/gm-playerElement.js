@@ -70,12 +70,12 @@ function addPlayerElements(playerId, playerLink) {
 // 	pc_footer.append(link);
 	
 	
-	test='<div class="card w-25 m-1">\
-		<div class="card-body" id="'+playerId+'_card">\
+	test='<div class="card w-25 m-1" id="'+playerId+'_card">\
+		<div class="card-body">\
 			<form id="'+playerId+'_charashee">\
 				<input name="playerId" value="'+playerId+'" style="display:none">\
 				<div class="d-flex">\
-					<h4 class="card-title character"><input class="w-100" name="character" type="text" readonly="true" placeholder="Character One"></h4>\
+					<h4 class="card-title character"><input class="w-100" name="character" type="text" readonly="true" placeholder="Character"></h4>\
 					<button type="button" class="close rm-player  align-self-baseline" onclick="removePlayer(\''+playerId+'\')"><i class="fas fa-minus-circle"></i></button>\
 				</div>\
 				<input class="card-text w-100" name="player" type="text" readonly="true" placeholder="Player">\
@@ -89,13 +89,11 @@ function addPlayerElements(playerId, playerLink) {
 			<a href="'+playerLink+'" class="card-link" target="_blank" id="'+playerId+'_link">Player\'s Link</a>\
 		</div>\
 	</div>';
-	$('div#players').append(test);
+	$('div#playersList').append(test);
 }
 
 function removePlayerElements(playerId) {
 	var player = document.getElementById(playerId+"_card");
 	var card=player.parentNode;
-	var cardDeck=card.parentNode;
 	card.removeChild(player);
-	cardDeck.removeChild(card);
 }
