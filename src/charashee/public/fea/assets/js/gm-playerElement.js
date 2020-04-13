@@ -26,12 +26,12 @@ function addPlayerElements(playerId, playerLink) {
 							</div>\
 						</div>\
 						<div class="input-field ">\
-							<label for="aspect[1]">Concept</label>\
-							<input name="aspect[1]" type="text" readonly="true">\
+							<label for="aspect1">Concept</label>\
+							<input name="aspect1" type="text" readonly="true">\
 						</div>\
 						<div class="input-field">\
-							<label for="aspect[2]">Problème</label>\
-							<input name="aspect[2]" type="text" readonly="true">\
+							<label for="aspect2">Problème</label>\
+							<input name="aspect2" type="text" readonly="true">\
 						</div>\
 					</form>\
 				</div>\

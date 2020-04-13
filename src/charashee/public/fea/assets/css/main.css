@@ -116,13 +116,17 @@ body {
 .input-field>label:not(.label-icon).active {
   transform: translateY(-16px) scale(0.8);
 }
-input[type="text"]:not(.browser-default) {
+input[type="text"]:not(.browser-default),
+textarea.materialize-textarea,
+input[type="number"]:not(.browser-default) {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   font-size: 1rem;
   font-weight: 400;
 }
-input[type="text"]:not(.browser-default):focus {
+input[type="text"]:not(.browser-default):focus,
+textarea.materialize-textarea:focus,
+input[type="number"]:not(.browser-default):focus {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
