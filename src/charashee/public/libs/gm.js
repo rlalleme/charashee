@@ -94,7 +94,7 @@ function retrievePlayers(){
 function connectToPlayer(player) {
 	var channel = 'PL'+player;
 	client.subscribe(channel);
-// 	askForUpdate(channel);
+	askForUpdate(channel);
 }
 
 function disconnectFromPlayer(player) {
