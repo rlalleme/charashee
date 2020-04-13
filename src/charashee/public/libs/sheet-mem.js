@@ -1,53 +1,36 @@
 const maxLength = 65000
 
 function buildJSONContent() {
-	//Grab all the form data and put it into an array.
-	var result = {};
-	$.each($("form.toSave :input").not(".noSave"), function() {
-		var name=this.getAttribute('name'); //Reject elements that do not have a 'name'
-		if(name == undefined || name == ''){
-			return;
+	var result={};
+	
+	$.each($("form.toSave"), function(){
+		parent=this.id;
+		if(result[parent]==undefined){
+			result[parent]={};
 		}
 		
-		if(this.value == undefined || this.value == ''){ //Reject elements that have an empty field (saves space)
-			return;
+		//First build the list of all uniqu names (automatically removes field where the name is not set)
+		var names=new Set();
+		for(i = 0; i < this.elements.length; i++){
+			element=this.elements.item(i);
+			if(element.name != undefined && element.name != "")
+				names.add(element.name);
 		}
 		
-		//First retrieve the closest form with a name
-		var parent="";
-		var curr=this.parentNode;
-		while(curr!=undefined){
-			if(curr.id != undefined && curr.id != "" && curr.tagName == "FORM"){
-				parent=curr.id;
+		for (let item of names) {
+			var element=this.elements.namedItem(item);
+			
+			//Then prepare the value
+			var value;
+			switch(element.type||element[0].type){
+				case"checkbox":
+					value=element.checked;
+					break;
+				default:
+					value=element.value;
+					break;
 			}
-			curr=curr.parentNode;
-		}
-		
-		//Then prepare the value
-		var value;
-		switch(this.type||this[0].type){
-			default:
-				value=this.value;
-				break;
-			case"radio":
-			case"checkbox":
-// TODO FIX IF NECESSARY	if(this.length)
-// 					for(var l=0;l<this.length;l++)
-// 						/*r.indexOf(c[l].value)>-1*/=this[l].checked;
-// 				else 
-					value=this.checked;/*=r.indexOf(c.value)>-1;*/
-				break;
-		}
-		
-		//Finally verify that the result structure already has the correct parent (if not null)
-		//And store the value
-		if(parent!=""){
-			if(result[parent]==undefined){
-				result[parent]={};
-			}
-			result[parent][name]=value;
-		}else{
-			result[name]=value;
+			result[parent][item]=value;
 		}
 	});
 	return result;

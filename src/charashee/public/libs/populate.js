@@ -20,24 +20,9 @@
 				var c=e.elements.namedItem(i);
 				if(c)
 					switch(c.type||c[0].type){
-// 						case"radio":
-// 							if(c.length)
-// 								for(var l=0;l<c.length;l++)
-// 									c[l].checked=r.indexOf(c[l].value)>-1;
-// 							else c.checked=r.indexOf(c.value)>-1;
 						case"checkbox":
 							c.checked=r;
 							break;
-// 						case"select-multiple":
-// 							for(var f=r.constructor==Array?r:[r],s=0;s<c.options.length;s++)
-// 								c.options[s].selected|=f.indexOf(c.options[s].value)>-1;
-// 							break;
-// 						case"select":
-// 						case"select-one":
-// 							c.value=r.toString()||r;
-// 							break;
-						case"date":
-							c.value=new Date(r).toISOString().split("T")[0]
 						default:
 							c.value=r;
 							break;

@@ -43,7 +43,7 @@ In a form all the input **with a `name`** are saved. If you want an input to hav
 Two fields are expected in the character sheet ('whatever' in the exemple): a `player` input and a `character` input.
 
 All the informations you want to save (even static fields) must be inputs. You can use `readonly` and particular styling to make them appear as text.
-The supported inputs types are: `<input>` of type `text`, `number`, `checkbox`, or `<textarea>`. (Support for other inputs type to come soon.)
+The supported inputs types are: `<input>` of type `text`, `number`, `checkbox`, `radio`, `date`, `<select>` (not multiple) and `<textarea>`. (Support for other inputs type to come soon.)
 
 Anywhere in the document you should palce the three buttons 'Join a table, Export, Import' (they are detected through their Id).
 Finally integrate all the necessary scripts.
