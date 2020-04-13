@@ -20,9 +20,7 @@ wsServer.listen(wsPort, "0.0.0.0", function () {
 const express = require('express')
 const app = express()
 app.use(express.static('public'))
-app.get('/', function (req, res) {
-	res.send('Hello World')
-})
+app.use('/', express.static('public/index.html'));
 
 app.get('/UUID', function (req, res) {
 	res.send(uuid.v4())
