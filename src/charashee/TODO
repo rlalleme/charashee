@@ -1,0 +1,75 @@
+v0.3:
+X	Page Player s'update dès qu'un champ change et modifie son url
+X	Les données sont sotckées en JSON
+X	La page les lit et se remplit en conséquence
+
+v0.4:
+X	Page Player est associé à un serveur et lui envoie les infos dès qu'il update
+X	Page GM affiche les players et leurs champs, se mets à jour sur update
+X	La page GM créé les joueurs et leur UID, le TID
+X	Le GM reçoit du JSON et affiche en conséquence
+X	Le GM peut exporter sa table dans un JSON (contient : tid, notes, pids, ...)
+
+v0.5:
+X	Le GM a soit déjà un TID, soit on lui en crée un. Donc le connectMQTT doit être bougé etc.
+X	Enlever le "generateTID' et faire un système propre
+X	Le GM a un nombre dynamique de joueurs
+X	Ajouter une fonction qui clean le tableau de joueurs (enlève les doublons), enlève (au lieu de cahcer) les lignes qui ne servent pas
+X	Le GM peut enlever un joueur (bouchonner ses pushs)
+X	Les joueurs peuvent rejoindre une table d'eux même
+
+v0.6:
+X	Les joueurs/MJ peuvent exporter leur personnage dans un fichier TXT
+X	Les joueurs/MJ peuvent importer leur fiche depuis le txt
+
+v0.7:
+X	Si la chaine de l'url a un type invalide (joueur pour le mj, mj pour le pj, ...) jeter et mettre à vide
+X	Changer le format de liste des joueurs, en faire des "cartes".
+X	Les cartes sont mises à jour à partir de la donnée JSON
+X	La page du GM affiche des infos signifiantes sur les PJ
+X	Ajouter le support aux select
+
+v0.8:
+X	Le nom du character et du jeu remplisse la barre de titre, pour le GM le jeu et son rôle
+X	Le GM peut enregistrer la table complète (joueurs inclus)
+X	Si le GM réouvre sa page, il est reconnecté notamment à ses joueurs djà présents, leur fiche MJ et préremplie, leur fiche de joueur aussi
+X	Le backup du MJ contient la liste de ses joueurs et leurs infos
+
+v0.9:
+X	Le système marche pour Fate (page PJ, et taleau GM)
+X	Le système enregistre et détecte le type de donnée enregistré et refuse celles qui ne vont pas
+
+v1.0:
+X	Le champs mini sont listés (game, name pour GM, player, character, game pour PJ, form de classe "toSave" dont champs avec name et pas de la classe "noSave" lien entre version PL et GM, support aux input textarea, number, checkbox, playerLink ...)
+X	Les classes utilisés sont listés et la création d'une nouvelle fiche documentée
+X	Les fiches de base deviennent le template
+X	L'utilisation de base du système est documenté : création d'une page joueur direct, bookmarking, création d'un joueur depuis MJ, rejoindre une table
+
+v1.1:
+	Séparer l'envoi et la réception en deux topics différents côté PL ET GM pour optimiser les échanges
+	Enlever la boucle infinie du GM quand il s'update
+	Le GM a des champs supplémentaires par joueur (backup possible pour une classe, plutôt que pour un id)
+
+v1.2:
+	Les serveurs (MQTT et web) ont un port configurable et l'interface de controle et facile
+	Le serveur expose les fichiers autrement pour que ce soit plus joli (<jeu>/#ldksmldkfmsk pour la PL et <jeu>/gm/#mslkdfsmldkfmlskf pour le GM)
+
+v1.3:
+	Si un joueur chagne de table, il est supprimé de l'ancienne table
+
+v1.4:
+	Chercher d'autres formats pour présenter les données (progress bar pour la vie)
+
+v1.5:
+	Le système marche pour un autre jeu
+	Atteindre la racine liste les jeux disponbiles
+
+Nice to have:
+	Le bouton print fait un beau rendu (et permet aussi de print avec tous les champs vide, ou avec tous les champs dynamique vide)
+	Le GM peut ajouter des PNJ ou autre éléments qui sont stockés dans son URL et son json
+	Les joueurs on un lien pour envoyer leur page à quelqu'un en readonly, si techniquement possible elle s'update quand le joueur fais une màj
+	Les joueurs peuvent mettre une image (URL ou fichier), elle est réduite et compressée
+	Ajouter deux status à la feuille de perso (en création/en jeu) pour autoriser/bloquer l'édition de certains champs
+	Ajouter le support aux autres types d'input : radiobox, ...
+	Ajouter un numero de version dans les pages et dans les data exportées, controlé à l'import, faire un système d'upgrade de version
+	Faire un système propre et inelligent d'internationalisation
