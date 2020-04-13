@@ -212,6 +212,10 @@ function onConnect() {
 	client.subscribe(clientId);
 	storeSheet();
 	addPlayerListeners();
+	
+	if (typeof refreshPageDisplay === "function") {
+		refreshPageDisplay();
+	}
 }
 
 //Called when the client loses its connection
