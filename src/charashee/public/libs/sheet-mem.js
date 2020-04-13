@@ -20,6 +20,15 @@ function buildJSONContent() {
 		for (let item of names) {
 			var element=this.elements.namedItem(item);
 			
+			//Skip fields that have the "noSave" class
+			if(RadioNodeList.prototype.isPrototypeOf(element)){
+				if(element[0] != undefined && element[0].classList.contains("noSave")){
+					continue;
+				}
+			}else if(element.classList.contains("noSave")){
+				continue;
+			}
+			
 			//Then prepare the value
 			var value;
 			switch(element.type||element[0].type){
