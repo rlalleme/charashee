@@ -8,7 +8,7 @@ function addPlayerElements(playerId, playerLink) {
 							<a class="btn-floating btn-small grey right rm-player" onclick="removePlayer(\''+playerId+'\')"><i class="material-icons">remove</i></a>\
 							<h4 class="card-title character col s11 input-field">\
 								<label for="character">Personnage</label>\
-								<input name="character" type="text">\
+								<input name="character" type="text" readonly="true">\
 							</h4>\
 						</div>\
 						<div class="input-field">\
