@@ -1,3 +1,38 @@
+Charashee - The character sheet handler
+=======================================
+
+The charashee tool is demonstrated here: **[https://charashee.gnosco.net](https://charashee.gnosco.net)**.
+
+Basic usage
+-----------
+
+For each game proposed, there are two interfaces: player sheet, game-master table.
+
+### Player sheet
+
+When a player opens a player sheet, she will be able to fill in the different fields. Each update will store the information in the URL.
+So after a long and prosperous game, teh player simply has to bookmark her sheet to store it and all its values.
+
+Another possibility is to export the sheet, to later import it. This will allow the palyer to download her sheet as a JSON file.
+
+Finally, a player can take part of a game-master table: either because the GM has provided a page to the player, or using the "Join Table" button.
+When the game master provides a page, importing the content from a previous session will update the player and the game master.
+
+
+### Game master table
+
+The game master's table allows to have a synthetic view of all the players taking part in a game session: their name, their character name, and some of their character stats/info.
+
+When a game master opens her table, she will be able to create a page for each player and send them the lin kto their individual page. Or she can provide her table ID to a player that has already created her page.
+
+
+
+
+-----
+
+Add a new game to the possible games
+====================================
+
 Instructions to build a new character sheet
 -------------------------------------------
 
