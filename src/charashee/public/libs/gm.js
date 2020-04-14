@@ -197,17 +197,23 @@ function askForUpdate(channel) {
 
 //Connect to MQTT
 function createMQTTClient() {
-	client = new Paho.Client(location.hostname, 8899, clientId);
+	try{
+		client = new Paho.Client(location.hostname, 8899, clientId);
 
-// 	client.onConnectionLost = onConnectionLost;
-	client.onMessageArrived = onMessageArrived;
+	// 	client.onConnectionLost = onConnectionLost;
+		client.onMessageArrived = onMessageArrived;
 
-	//Connect the client
-	client.connect({
-		onSuccess:onConnect,
-		reconnect: true,
-		useSSL: true
-	});
+		//Connect the client
+		client.connect({
+			onSuccess:onConnect,
+			onFailure:onFailure,
+			reconnect: true,
+			useSSL: true
+		});
+	}catch(err){
+		client = "";
+		return;
+	}
 }
 
 //When connected, warn the players and retrieve their sheet
@@ -220,6 +226,11 @@ function onConnect() {
 	if (typeof refreshPageDisplay === "function") {
 		refreshPageDisplay();
 	}
+}
+
+function onFailure() {
+	console.log("Failed to connect");
+	client="";
 }
 
 //Called when the client loses its connection

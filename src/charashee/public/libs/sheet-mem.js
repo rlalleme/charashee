@@ -63,7 +63,7 @@ function storeSheet(client, uuid) {
 		alert('Length of ' + totalLength + ' exceeds maximum '+maxLength+'. Remove some text and re-save to ensure your bookmark works!');
 	}
     
-	if(client != undefined && uuid != undefined && uuid != '') {
+	if(client != undefined && client != "" && uuid != undefined && uuid != '') {
 		message = new Paho.Message(data);
 		message.destinationName = uuid;
 		client.send(message);

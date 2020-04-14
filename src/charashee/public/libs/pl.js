@@ -23,7 +23,8 @@ function joinTable() {
 	if(tableName != '') {
 		message = new Paho.Message('join'+clientId);
 		message.destinationName = 'GM'+tableName;
-		client.send(message);
+		if(client != undefined && client != "")
+			client.send(message);
 	}
 }
 
@@ -109,17 +110,23 @@ function getUUID(callback) {
 
 //Connect to MQTT
 function createMQTTClient() {
-	client = new Paho.Client(location.hostname, 8899, clientId);
+	try{
+		client = new Paho.Client(location.hostname, 8899, clientId);
+		
+	// 	client.onConnectionLost = onConnectionLost;
+		client.onMessageArrived = onMessageArrived;
 
-// 	client.onConnectionLost = onConnectionLost;
-	client.onMessageArrived = onMessageArrived;
-
-	//Connect the client
-	client.connect({
-		onSuccess:onConnect,
-		reconnect: true,
-		useSSL: true
-	});
+		//Connect the client
+		client.connect({
+			onSuccess:onConnect,
+			onFailure:onFailure,
+			reconnect: true,
+			useSSL: true
+		});
+	}catch(err){
+		client = "";
+		return;
+	}
 }
 
 //Code executed on connection
@@ -127,6 +134,11 @@ function onConnect() {
 	console.log("onConnect " + clientId);
 	client.subscribe(clientId);
 	storeSheet(client, clientId);
+}
+
+function onFailure() {
+	console.log("Failed to connect");
+	client="";
 }
 
 // //Called when the client loses its connection
