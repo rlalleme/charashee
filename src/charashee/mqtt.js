@@ -1,21 +1,31 @@
-const ws = require('websocket-stream');
+const ws = require('websocket-stream')
 const aedes = require('aedes')()
-const uuid = require('uuid');
+const uuid = require('uuid')
+const fs = require('fs')
 
 const server_ports = require('./node_modules/server_ports.js');
 
-//Get WebSocket port from environment
-var wsPort = server_ports.getWebsocketPort();
+if(process.env.CERT_PATH == undefined){
+	console.log('Env variable CERT_PATH undefined. Necessary to create a SSL Websocket.');
+	return 99;
+}
+console.log(process.env.CERT_PATH+"/fullchain.pem");
 
-// Ws server
-var wsServer = require('http').createServer();
+const wsSslPort = server_ports.getWebsocketPort();
+
+let wsSslServer = require('https').createServer({
+	key: fs.readFileSync(process.env.CERT_PATH+"/privkey.pem"),
+	cert: fs.readFileSync(process.env.CERT_PATH+"/fullchain.pem"),
+	requestCert: false, // client send their certificate
+	rejectUnauthorized: true,
+	ca: [ fs.readFileSync(process.env.CERT_PATH+"/fullchain.pem") ]
+})
 ws.createServer({
-	server: wsServer
-}, aedes.handle);
-
-wsServer.listen(wsPort, "0.0.0.0", function () {
-	console.log('MQTT websocket server listening on port ', wsPort)
-});
+	server: wsSslServer
+}, aedes.handle)
+wsSslServer.listen(wsSslPort, "0.0.0.0", function () {
+	console.log('MQTT websocket tls server listening on port', wsSslPort)
+})
 
 const express = require('express')
 const app = express()

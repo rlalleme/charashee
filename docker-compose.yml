@@ -5,11 +5,12 @@ services:
     container_name: charashee
     volumes:
       - './src/charashee/:/src/charashee'
+      - './etc/letsencrypt:/etc/letsencrypt'
     environment:
-      WSOCKET_PORT: 2883
+      WSOCKET_PORT: 8899
       SERVER_PORT: 80
+      CERT_PATH: /etc/letsencrypt/live/gnosco.net
     ports:
-      - '2883:2883'
-      - '80:80'
+      - '8899:8899'
     tty: true
     stdin_open: true

@@ -109,13 +109,17 @@ function getUUID(callback) {
 
 //Connect to MQTT
 function createMQTTClient() {
-	client = new Paho.Client(location.hostname, 2883, clientId);
+	client = new Paho.Client(location.hostname, 8899, clientId);
 
 // 	client.onConnectionLost = onConnectionLost;
 	client.onMessageArrived = onMessageArrived;
 
 	//Connect the client
-	client.connect({onSuccess:onConnect, reconnect : true});
+	client.connect({
+		onSuccess:onConnect,
+		reconnect: true,
+		useSSL: true
+	});
 }
 
 //Code executed on connection

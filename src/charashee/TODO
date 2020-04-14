@@ -49,6 +49,7 @@ v1.1:
 	Séparer l'envoi et la réception en deux topics différents côté PL ET GM pour optimiser les échanges
 	Enlever la boucle infinie du GM quand il s'update
 	Le GM a des champs supplémentaires par joueur (backup possible pour une classe, plutôt que pour un id)
+	Robustifier le serveur : si la connexion ne s'établit pas ou n'importe quoi, le reste de la page (update url) doit marcher.
 
 v1.2:
 	Les serveurs (MQTT et web) ont un port configurable et l'interface de controle et facile
