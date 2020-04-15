@@ -282,7 +282,8 @@ function fillPlayerSheet(player, content){
 	
 	storeSheet();
 	
-	if (typeof refreshPageDisplay === "function") {
-		refreshPageDisplay();
-	}
+	//TODO Find a way to do it better
+// 	if (typeof refreshPageDisplay === "function") {
+// 		refreshPageDisplay();
+// 	}
 }
