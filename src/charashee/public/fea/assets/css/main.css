@@ -134,3 +134,8 @@ input[type="number"]:not(.browser-default):focus {
 textarea.materialize-textarea {
   resize: vertical !important;
 }
+
+label, legend, span {
+  font-family: Times, serif;
+  font-variant: small-caps;
+}
