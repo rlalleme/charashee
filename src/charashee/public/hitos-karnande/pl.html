@@ -8,21 +8,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="pl.css">
-	<script>
-	$(document).ready(function() {
-		$(window).keydown(function(event){
-			if((event.keyCode == 13)){
-				event.preventDefault();
-				return false;
-			}
-		});
-		$("form :input").each(function(){
-			var input = $(this);
-			input.unbind();
-			input.change(function() {});
-		});
-	});
-	</script>
 </head>
 <body>
 <div class="container mb-3 text-center">
