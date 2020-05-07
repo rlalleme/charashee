@@ -1,0 +1,135 @@
+h1, legend, label {
+	font-variant: small-caps;
+}
+
+/* form fieldset .labelNotAbove{ clear: both; } */
+form fieldset {
+	float: left;
+	width: 100%;
+}
+form fieldset label {
+	display: block;
+	font-size: 0.75em;
+}
+input {
+	width: 100%;
+}
+input[type=number] {
+	width: 100%;
+	text-align: center;
+}
+textarea {
+	width: 100%;
+	resize: vertical;
+}
+fieldset {
+	border: 1px solid;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+label {
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+.skills .number {
+	width: 10%;
+	min-width: 45px;
+}
+
+.skills .descr {
+	width: 85%;
+}
+
+.skills .used,
+.descriptive .used {
+	width: 5%;
+	margin: auto;
+	min-width: 15px;
+}
+
+.descriptive .descr {
+	width: 95%;
+}
+
+
+
+.logo {
+	width: 32px;
+	min-width: 32px;
+	border: 1px solid black;
+	border-radius: 32px;
+	margin-right: 0.25em;
+	background-size: 30px 30px;
+	background-position: center center;
+}
+
+.physique {
+	background-image: url("img/physique.png");
+}
+
+.combat {
+	background-image: url("img/combat.png");
+}
+
+.culture {
+	background-image: url("img/culture.png");
+}
+
+.interaction {
+	background-image: url("img/interaction.png");
+}
+
+.perception {
+	background-image: url("img/perception.png");
+}
+
+.profession {
+	background-image: url("img/profession.png");
+}
+
+.psychique {
+	background-image: url("img/psychique.png");
+}
+
+.subterfuge {
+	background-image: url("img/subterfuge.png");
+}
+
+
+
+.weapon .name {
+	width: 30%;
+}
+
+.weapon .dam {
+	width: 5%;
+	min-width: 45px;
+}
+
+.weapon .mod {
+	width: 5%;
+	min-width: 45px;
+}
+
+.weapon .use {
+	width: 5%;
+	min-width: 45px;
+}
+
+.weapon .descr {
+	width: 55%;
+}
+
+
+
+
+.armor .number {
+	width: 10%;
+	min-width: 45px;
+}
+
+.armor .descr {
+	width: 90%;
+}

@@ -1,0 +1,421 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="pl.css">
+	<script>
+	$(document).ready(function() {
+		$(window).keydown(function(event){
+			if((event.keyCode == 13)){
+				event.preventDefault();
+				return false;
+			}
+		});
+		$("form :input").each(function(){
+			var input = $(this);
+			input.unbind();
+			input.change(function() {});
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>Karnande - powered by Hitos</h1>
+
+<!--TODO RAPH Descndre label plus proche des champs-->
+
+<div class="container">
+	<form>
+		<div class="row">
+			<div class="col-sm-6">
+				<fieldset>
+					<legend>Identité</legend>
+					<div class="row">
+						<div class="col-sm-6 px-1"><label for="player">Joueur</label><input type="text" id="player" name="player" class="w-100" placeholder="Joueur"></div>
+						<div class="col-sm-6 px-1"><label for="character">Personnage</label><input type="text" id="character" name="character" class="w-100" placeholder="Personnage"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2 p-0"><label for="ascendance">Ascendance</label>
+						<select id="ascendance">s
+							<option value="elis">Elis</option>
+							<option value="enis">Enis</option>
+							<option value="dragis">Dragis</option>
+							<option value="metis">Métis</option>
+						</select>
+						</div>
+						<div class="col-sm-5 px-1"><label for="origine">Origine</label><input type="text" id="origine" name="origine" placeholder="Origne"></div>
+						<div class="col-sm-5 px-1"><label for="genre">Genre</label><input type="text" id="genre" name="genre" placeholder="Genre"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 px-1"><label for="descr">Description</label><textarea id="descr" name="descr" placeholder="Description"></textarea></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 px-1"><label for="concept">Concept</label><input type="text" id="concept" name="concept" placeholder="Concept"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 px-1"><label for="citation">Citation</label><input type="text" id="citation" name="citation" placeholder="Citation"></div>
+					</div>
+		<!--		<fieldset>
+				<legend>Traits intrinsèques</legend>
+				<p><textarea id="trait_intr" name="trait_intr" placeholder="Traits Intrinsèques"></textarea></p>
+				</fieldset>
+				<fieldset>
+				<legend>Pouvoirs spéciaux</legend>
+				<p><textarea id="pouv" name="pouv" placeholder="Pouvoirs spéciaux"></textarea></p>
+				</fieldset>-->
+				</fieldset>
+			</div>
+			
+			<div class="col-sm-6 descriptive">
+				<fieldset>
+					<!--TODO RAPH quand clic sur bouton, fait affiché en barré-->
+					<legend>Faits Marquants</legend><!-- POUR MJ : voir les faits -->
+					<div class="d-flex py-1">
+						<div class="descr"><input type="text" id="faits_marquants_1" name="faits_marquants_1" placeholder="Fait marquant"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_1_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="descr"><input type="text" id="faits_marquants_2" name="faits_marquants_2" placeholder="Fait marquant"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_2_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="descr"><input type="text" id="faits_marquants_3" name="faits_marquants_3" placeholder="Fait marquant"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_3_epuiser" name="epuiser"></div>
+					</div>
+				</fieldset>
+			
+				<fieldset>
+					<legend>Complication</legend><!-- POUR MJ : voir les complications -->
+					<input class="w-100 my-1" type="text" id="complication_1" name="complication_1" placeholder="Complication">
+					<input class="w-100 my-1" type="text" id="complication_2" name="complication_2" placeholder="Complication">
+				</fieldset>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-8 skills">
+				<fieldset>
+					<!--TODO RAPH barrer le texte est la valeur quand épuisé-->
+					<legend>Caractéristiques</legend> <!-- POUR MJ : voir les traits -->
+					<!-- possibilité de mettre des images pour chaque carcac à la place du nom qui serait en label si on passe la souris sur l'image ? -->
+					<label for="force">Force</label>
+					<div class="d-flex">
+						<div class="number"><input type="number" id="force" name="force" min="0" max="13"></div>
+						<div class="descr"><input type="text" id="force_trait" name="force_trait"></div>
+						<div class="used"><input type="checkbox" id="force_epuiser" name="epuiser"></div>
+					</div>
+					<label for="reflexes">Réflexes</label>
+					<div class="d-flex">
+						<div class="number"><input type="number" id="reflexes" name="reflexes" min="0" max="13"></div>
+						<div class="descr"><input type="text" id="reflexes_trait" name="reflexes_trait"></div>
+						<div class="used"><input type="checkbox" id="reflexes_epuiser" name="epuiser"></div>
+					</div>
+					<label for="volonte">Volonté</label>
+					<div class="d-flex">	
+						<div class="number"><input type="number" id="volonte" name="volonte" min="0" max="13"></div>
+						<div class="descr"><input type="text" id="volonte_trait" name="volonte_trait"></div>
+						<div class="used"><input type="checkbox" id="volonte_epuiser" name="epuiser"></div>
+					</div>
+					<label for="intellecte">Intellect</label>
+					<div class="d-flex">	
+						<div class="number"><input type="number" id="intellecte" name="intellecte" min="0" max="13"></div>
+						<div class="descr"><input type="text" id="intellecte_trait" name="intellecte_trait"></div>
+						<div class="used"><input type="checkbox" id="intellecte_epuiser" name="epuiser"></div>
+					</div>
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12 skills"> -->
+				<fieldset>
+					<!--TODO RAPH Mettre icon en début de ligne, tooltip contient le texte-->
+					<!--TODO RAPH barrer le texte est la valeur quand épuisé-->
+					<legend>Compétences</legend><!-- POUR MJ : voir les traits -->
+					<!-- possibilité de mettre des images pour chaque compétence à la place du nom qui serait en label si on passe la souris sur l'image ? -->
+					<div class="d-flex py-1">
+						<div class="logo physique" title="Condition Physique"></div>
+						<div class="number"><input type="number" id="condition_physique" name="condition_physique" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="condition_physique_trait" name="condition_physique_trait"></div>
+						<div class="used"><input type="checkbox" id="condition_physique_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo combat" title="Combat"></div>
+						<div class="number"><input type="number" id="combat" name="combat" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="condition_physique_trait" name="combat_trait"></div>
+						<div class="used"><input type="checkbox" id="combat_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo interaction" title="Interaction"></div>
+						<div class="number"><input type="number" id="interaction" name="interaction" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="interaction_trait" name="interaction_trait"></div>
+						<div class="used"><input type="checkbox" id="interaction_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo perception" title="Peception"></div>
+						<div class="number"><input type="number" id="perception" name="perception" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="perception_trait" name="perception_trait"></div>
+						<div class="used"><input type="checkbox" id="perception_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo subterfuge" title="Subterfuge"></div>
+						<div class="number"><input type="number" id="subterfuge" name="subterfuge" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="subterfuge_trait" name="subterfuge_trait"></div>
+						<div class="used"><input type="checkbox" id="subterfuge_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo culture" title="Culture"></div>
+						<div class="number"><input type="number" id="culture" name="culture" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="culture_trait" name="culture_trait"></div>
+						<div class="used"><input type="checkbox" id="culture_epuiser" name="epuiser"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="logo profession" title="Profession"></div>
+						<div class="number"><input type="number" id="profession" name="profession" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="profession_trait" name="profession_trait"></div>
+						<div class="used"><input type="checkbox" id="profession_epuiser" name="epuiser"></div>
+					</div>
+					<!-- possibilité d'en ajouter ? avec un bouton + -->
+		<!--TODO RAPH Ajouter un bouton pour ajouter une compétence : icones dans une liste, tooltip/nom à définir par l'user-->
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12 skills"> -->
+				<fieldset class="col-sm-12 skills">
+					<legend>Autres Compétences</legend><!-- POUR MJ : voir les traits -->
+					<div class="d-flex py-1">
+						<div class="logo psychique" title="Autre 1"></div>
+						<div class="number"><input type="number" id="autre_1" name="autre_1" min="0" max="10"></div>
+						<div class="descr"><input type="text" id="autre_1_trait" name="autre_1_trait"></div>
+						<div class="used"><input type="checkbox" id="autre_1_epuiser" name="epuiser"></div>
+					</div>
+					<!-- possibilité d'en ajouter ? avec un bouton + -->
+		<!--TODO RAPH Ajouter un bouton pour ajouter une compétence : icones dans une liste, tooltip/nom à définir par l'user-->
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12 weapon"> -->
+				<fieldset class="weapon">
+					<legend>Armes</legend><!--TODO RAPH Transformer en tableau et number pour les modes et nb util, degats est une lettre-->
+			<!-- peut-être mettre des label au dessus. Au moins pour le nombre pour le nombre de mode et le nombre d'utilisation de Surcharge -->
+					<div class="d-flex py-1">
+						<div class="name"><input type="text" id="nom_arme_1" name="nom_arme_1" placeholder="Nom de l'arme"></div>
+						<div class="dam"><input type="text" id="valeur_deg_arme_1" name="valeur_deg_arme_1" placeholder="Dêgat de l'arme"></div>
+						<div class="mod"><input type="number" id="mode_arme_1" name="mode_arme_1" placeholder="Nombre de mode de l'arme"></div>
+						<div class="use"><input type="number" id="mode_util_1" name="mode_util_1" placeholder="Nombre d'utilisation de Surcharge"></div>
+						<div class="descr"><input type="text" id="desc_deg_arme_1" name="desc_deg_arme_1" placeholder="Déscription"></div>
+					</div>
+					<div class="d-flex py-1">
+						<div class="name"><input type="text" id="nom_arme_2" name="nom_arme_2" placeholder="Nom de l'arme"></div>
+						<div class="dam"><input type="text" id="valeur_deg_arme_2" name="valeur_deg_arme_2" placeholder="Dêgat de l'arme"></div>
+						<div class="mod"><input type="number" id="mode_arme_2" name="mode_arme_2" placeholder="Nombre de mode de l'arme"></div>
+						<div class="use"><input type="number" id="mode_util_2" name="mode_util_2" placeholder="Nombre d'utilisation de Surcharge"></div>
+						<div class="descr"><input type="text" id="desc_deg_arme_2" name="desc_deg_arme_2" placeholder="Déscription"></div>
+					</div>
+					<div class="d-flex py-1">
+						<div class="name"><input type="text" id="nom_arme_3" name="nom_arme_3" placeholder="Nom de l'arme"></div>
+						<div class="dam"><input type="text" id="valeur_deg_arme_3" name="valeur_deg_arme_3" placeholder="Dêgat de l'arme"></div>
+						<div class="mod"><input type="number" id="mode_arme_3" name="mode_arme_3" placeholder="Nombre de mode de l'arme"></div>
+						<div class="use"><input type="number" id="mode_util_3" name="mode_util_3" placeholder="Nombre d'utilisation de Surcharge"></div>
+						<div class="descr"><input type="text" id="desc_deg_arme_3" name="desc_deg_arme_3" placeholder="Déscription"></div>
+					</div>
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12 armor"> -->
+				<fieldset class="armor">
+					<legend>Armures</legend>
+					<div class="d-flex py-1">
+						<div class="number"><input type="number" id="armure_1" name="armure_1"></div>
+						<div class="descr"><input type="text" id="desc_armure_1" name="desc_armure_1" placeholder="Déscription"></div>
+					</div>
+					<div class="d-flex py-1">
+						<div class="number"><input type="number" id="armure_2" name="armure_2"></div>
+						<div class="descr"><input type="text" id="desc_armure_2" name="desc_armure_2" placeholder="Déscription"></div>
+					</div>
+				</fieldset>
+			</div>
+
+		<!--	<fieldset>
+				<legend>Dégénérescence</legend>
+				<p><input type="checkbox" id="dege_1" name="dege_1"><input type="checkbox" id="dege_2" name="dege_2"><input type="checkbox" id="dege_3" name="dege_3"><input type="checkbox" id="dege_4" name="dege_4"><input type="checkbox" id="dege_5" name="dege_5"><input type="checkbox" id="dege_6" name="dege_6"><input type="checkbox" id="dege_7" name="dege_7"><input type="checkbox" id="dege_8" name="dege_8"><input type="checkbox" id="dege_9" name="dege_9"><input type="checkbox" id="dege_10" name="dege_10"></p>
+				
+				<p><label for="etat_actuel">Etat actuel</label>
+				<input type="text" id="complication_2" name="complication_2" placeholder="Complication"></p>
+			</fieldset>-->
+
+			<div class="col-sm-4">
+				<fieldset>
+					<legend>Drame</legend><!-- POUR MJ : voir le nombre de points actuels -->
+					<div class="row">
+						<div class="col-sm-3 m-auto"><input type="number" id="valeur_drame" name="valeur_drame" placeholder="Valeur de Drame"></div>
+						<div class="col-sm-9">
+							<label>Points de Drame</label>
+<!-- 							<input type="number" id="point_drame" name="point_drame" min="0" max="10"> -->
+							<div class="row">
+								<input class="form-control-sm col" id="pdd_0" name="pdd_0" type="checkbox">
+								<input class="form-control-sm col" id="pdd_1" name="pdd_1" type="checkbox">
+								<input class="form-control-sm col" id="pdd_2" name="pdd_2" type="checkbox">
+								<input class="form-control-sm col" id="pdd_3" name="pdd_3" type="checkbox">
+							</div>
+							<div class="row">
+								<input class="form-control-sm col" id="pdd_4" name="pdd_4" type="checkbox">
+								<input class="form-control-sm col" id="pdd_5" name="pdd_5" type="checkbox">
+								<input class="form-control-sm col" id="pdd_6" name="pdd_6" type="checkbox">
+								<input class="form-control-sm col" id="pdd_7" name="pdd_7" type="checkbox">
+							</div>
+							<div class="row">
+								<input class="form-control-sm col" id="pdd_8" name="pdd_8" type="checkbox">
+								<input class="form-control-sm col" id="pdd_9" name="pdd_9" type="checkbox">
+								<input class="form-control-sm col" id="pdd_10" name="pdd_10" type="checkbox">
+								<input class="form-control-sm col" id="pdd_11" name="pdd_11" type="checkbox">
+							</div>
+						</div>
+					</div>
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12"> -->
+				<fieldset>
+					<legend>Combat</legend><!--TODO RAPH Transformer champs en readonly et faire le calcul auto, mettre formule en tooltip-->
+					<div class="row">
+						<div class="col-sm-5">
+							<label for="initiative">Initiative</label>
+							<input class="w-100 my-1" type="text" id="valeur_init" name="valeur_init" placeholder="REF+INT/2">
+							
+							<label for="defense">Défense</label>
+							<input type="text" id="valeur_def" name="valeur_def" placeholder="REF+5+max(cond. phy, combat)">
+							
+							<label for="def_passive">Défense passive</label>
+							<input type="text" id="valeur_def_passive" name="valeur_def_passive" placeholder="REF+5+max(condition pyhique, combat)">
+						</div>
+						<div class="col-sm-7">
+							<fieldset>
+							<legend>Bonus aux dégâts</legend><!--TODO RAPH Transformer champs en readonly et faire le calcul auto, mettre formule en tooltip-->
+								<label for="melee">Mêlée</label>
+								<input type="text" id="valeur_melee" name="valeur_melee" placeholder="(FOR+combat)/4">
+								
+								<label for="distance">Distance</label>
+								<input type="text" id="valeur_distance" name="valeur_distance" placeholder="combat/4">
+							</fieldset>
+						</div>
+					</div>
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12"> -->
+				<fieldset>
+					<legend>Santé</legend><!-- POUR MJ : savoir si le perso est dans un état : bléssé, handicapé,etc. -->
+					<!--TODO RAPH Transformer champs en readonly et faire le calcul auto, mettre formule en tooltip-->
+					<label for="endurance">Endurance</label>
+					<input type="text" id="valeur_endurance" name="valeur_endurance" placeholder="FOR+VOL/2">
+					<label for="resistance">Résistance</label>
+					<input type="text" id="valeur_resistance" name="valeur_resistance" placeholder="Endurance*3">
+					<!--TODO RAPH Faire trois colonnes de la taille de l'endurance-->
+					
+					<table>
+						<tr>
+							<td><input type="checkbox" id="dege_1" name="deg_phy_bl_1"></td>
+							<td><input type="checkbox" id="deg_phy_bl_2" name="deg_phy_bl_2"></td>
+							<td><input type="checkbox" id="deg_phy_bl_3" name="deg_phy_bl_3"></td>
+							<td><input type="checkbox" id="deg_phy_bl_4" name="deg_phy_bl_4"></td>
+							<td><input type="checkbox" id="deg_phy_bl_5" name="deg_phy_bl_5"></td>
+							<td><input type="checkbox" id="deg_phy_bl_6" name="deg_phy_bl_6"></td>
+							<td><input type="checkbox" id="deg_phy_bl_7" name="deg_phy_bl_7"></td>
+							<td><input type="checkbox" id="deg_phy_bl_8" name="deg_phy_bl_8"></td>
+							<td><input type="checkbox" id="deg_phy_bl_9" name="deg_phy_bl_9"></td>
+							<td><input type="checkbox" id="deg_phy_bl_10" name="deg_phy_bl_10"></td>
+							<td><input type="checkbox" id="deg_phy_bl_11" name="deg_phy_bl_11"></td>
+							<td><input type="checkbox" id="deg_phy_bl_12" name="deg_phy_bl_12"></td>
+							<td><input type="checkbox" id="deg_phy_bl_13" name="deg_phy_bl_13"></td>
+							<td><input type="checkbox" id="deg_phy_bl_14" name="deg_phy_bl_14"></td>
+							<td><input type="checkbox" id="deg_phy_bl_15" name="deg_phy_bl_15"></td>
+							<td><label>Blessé (-2)</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="dege_1" name="deg_phy_hd_1"></td>
+							<td><input type="checkbox" id="deg_phy_hd_2" name="deg_phy_hd_2"></td>
+							<td><input type="checkbox" id="deg_phy_hd_3" name="deg_phy_hd_3"></td>
+							<td><input type="checkbox" id="deg_phy_hd_4" name="deg_phy_hd_4"></td>
+							<td><input type="checkbox" id="deg_phy_hd_5" name="deg_phy_hd_5"></td>
+							<td><input type="checkbox" id="deg_phy_hd_6" name="deg_phy_hd_6"></td>
+							<td><input type="checkbox" id="deg_phy_hd_7" name="deg_phy_hd_7"></td>
+							<td><input type="checkbox" id="deg_phy_hd_8" name="deg_phy_hd_8"></td>
+							<td><input type="checkbox" id="deg_phy_hd_9" name="deg_phy_hd_9"></td>
+							<td><input type="checkbox" id="deg_phy_hd_10" name="deg_phy_hd_10"></td>
+							<td><input type="checkbox" id="deg_phy_hd_11" name="deg_phy_hd_11"></td>
+							<td><input type="checkbox" id="deg_phy_hd_12" name="deg_phy_hd_12"></td>
+							<td><input type="checkbox" id="deg_phy_hd_13" name="deg_phy_hd_13"></td>
+							<td><input type="checkbox" id="deg_phy_hd_14" name="deg_phy_hd_14"></td>
+							<td><input type="checkbox" id="deg_phy_hd_15" name="deg_phy_hd_15"></td>
+							<td><label>Handicapé (-5)</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="dege_1" name="deg_phy_mo_1"></td>
+							<td><input type="checkbox" id="deg_phy_mo_2" name="deg_phy_mo_2"></td>
+							<td><input type="checkbox" id="deg_phy_mo_3" name="deg_phy_mo_3"></td>
+							<td><input type="checkbox" id="deg_phy_mo_4" name="deg_phy_mo_4"></td>
+							<td><input type="checkbox" id="deg_phy_mo_5" name="deg_phy_mo_5"></td>
+							<td><input type="checkbox" id="deg_phy_mo_6" name="deg_phy_mo_6"></td>
+							<td><input type="checkbox" id="deg_phy_mo_7" name="deg_phy_mo_7"></td>
+							<td><input type="checkbox" id="deg_phy_mo_8" name="deg_phy_mo_8"></td>
+							<td><input type="checkbox" id="deg_phy_mo_9" name="deg_phy_mo_9"></td>
+							<td><input type="checkbox" id="deg_phy_mo_10" name="deg_phy_mo_10"></td>
+							<td><input type="checkbox" id="deg_phy_mo_11" name="deg_phy_mo_11"></td>
+							<td><input type="checkbox" id="deg_phy_mo_12" name="deg_phy_mo_12"></td>
+							<td><input type="checkbox" id="deg_phy_mo_13" name="deg_phy_mo_13"></td>
+							<td><input type="checkbox" id="deg_phy_mo_14" name="deg_phy_mo_14"></td>
+							<td><input type="checkbox" id="deg_phy_mo_15" name="deg_phy_mo_15"></td>
+							<td><label for="mourant">Mourant</label></td>
+						</tr>
+					</table>
+					<fieldset>
+						<legend>Séquelles</legend><!-- POUR MJ : voir les séquelles -->
+						<input type="text" id="sequelle_1" name="sequelle_1" placeholder="Séquelle">
+						<!--TODO RAPH Ajouter un bouton pour ajouter une séquelle-->
+					</fieldset>
+				</fieldset>
+<!-- 			</div> -->
+			
+<!-- 			<div class="col-sm-12"> -->
+				<fieldset>
+					<legend>Traits temporaires</legend><!-- POUR MJ : voir les traits -->
+					<input type="text" id="trait_temp_1" name="trait_temp_1" placeholder="Trait temporaire">
+					<!--TODO RAPH Ajouter un bouton pour ajouter un trait temporaire-->
+				</fieldset>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- ce serait bien que ce soit plutôt placer sur le côté pour tout avoir à vu -->
+<form>
+
+<!--	<fieldset>
+    <legend>Santé Mentale</legend>
+		<p><label for="sang_froid">Sang-froid</label><input type="text" id="valeur_sang_froid" name="valeur_sang_froid" placeholder="VOL+INT/2"></p>
+		<p><label for="stabilite">Stabilité</label><input type="text" id="valeur_stabilite" name="valeur_stabilite" placeholder="Sang-froid*3"></p>
+        <p><input type="checkbox" id="dege_1" name="deg_psy_bl_1"><input type="checkbox" id="deg_psy_bl_2" name="deg_psy_bl_2"><input type="checkbox" id="deg_psy_bl_3" name="deg_psy_bl_3"><input type="checkbox" id="deg_psy_bl_4" name="deg_psy_bl_4"><input type="checkbox" id="deg_psy_bl_5" name="deg_psy_bl_5"><input type="checkbox" id="deg_psy_bl_6" name="deg_psy_bl_6"><input type="checkbox" id="deg_psy_bl_7" name="deg_psy_bl_7"><input type="checkbox" id="deg_psy_bl_8" name="deg_psy_bl_8"><input type="checkbox" id="deg_psy_bl_9" name="deg_psy_bl_9"><input type="checkbox" id="deg_psy_bl_10" name="deg_psy_bl_10"><input type="checkbox" id="deg_psy_bl_11" name="deg_psy_bl_11"><input type="checkbox" id="deg_psy_bl_12" name="deg_psy_bl_12"><input type="checkbox" id="deg_psy_bl_13" name="deg_psy_bl_13"><input type="checkbox" id="deg_psy_bl_14" name="deg_psy_bl_14"><input type="checkbox" id="deg_psy_bl_15" name="deg_psy_bl_15"><label for="trouble">Troublée</label></p>
+        <p><input type="checkbox" id="dege_1" name="deg_psy_hd_1"><input type="checkbox" id="deg_psy_hd_2" name="deg_psy_hd_2"><input type="checkbox" id="deg_psy_hd_3" name="deg_psy_hd_3"><input type="checkbox" id="deg_psy_hd_4" name="deg_psy_hd_4"><input type="checkbox" id="deg_psy_hd_5" name="deg_psy_hd_5"><input type="checkbox" id="deg_psy_hd_6" name="deg_psy_hd_6"><input type="checkbox" id="deg_psy_hd_7" name="deg_psy_hd_7"><input type="checkbox" id="deg_psy_hd_8" name="deg_psy_hd_8"><input type="checkbox" id="deg_psy_hd_9" name="deg_psy_hd_9"><input type="checkbox" id="deg_psy_hd_10" name="deg_psy_hd_10"><input type="checkbox" id="deg_psy_hd_11" name="deg_psy_hd_11"><input type="checkbox" id="deg_psy_hd_12" name="deg_psy_hd_12"><input type="checkbox" id="deg_psy_hd_13" name="deg_psy_hd_13"><input type="checkbox" id="deg_psy_hd_14" name="deg_psy_hd_14"><input type="checkbox" id="deg_psy_hd_15" name="deg_psy_hd_15"><label for="derange">Dérangé</label></p>
+        <p><input type="checkbox" id="dege_1" name="deg_psy_mo_1"><input type="checkbox" id="deg_psy_mo_2" name="deg_psy_mo_2"><input type="checkbox" id="deg_psy_mo_3" name="deg_psy_mo_3"><input type="checkbox" id="deg_psy_mo_4" name="deg_psy_mo_4"><input type="checkbox" id="deg_psy_mo_5" name="deg_psy_mo_5"><input type="checkbox" id="deg_psy_mo_6" name="deg_psy_mo_6"><input type="checkbox" id="deg_psy_mo_7" name="deg_psy_mo_7"><input type="checkbox" id="deg_psy_mo_8" name="deg_psy_mo_8"><input type="checkbox" id="deg_psy_mo_9" name="deg_psy_mo_9"><input type="checkbox" id="deg_psy_mo_10" name="deg_psy_mo_10"><input type="checkbox" id="deg_psy_mo_11" name="deg_psy_mo_11"><input type="checkbox" id="deg_psy_mo_12" name="deg_psy_mo_12"><input type="checkbox" id="deg_psy_mo_13" name="deg_psy_mo_13"><input type="checkbox" id="deg_psy_mo_14" name="deg_psy_mo_14"><input type="checkbox" id="deg_psy_mo_15" name="deg_psy_mo_15"><label for="fou">Fou</label></p>
+        <fieldset>
+            <legend>Dérangements Mentaux</legend>
+            <p><input type="text" id="sequelle_mentaux_1" name="sequelle_mentaux_1" placeholder="Dérangement mental"></p>
+            <p><input type="text" id="sequelle_mentaux_2" name="sequelle_mentaux_2" placeholder="Dérangement mental"></p>
+            <p><input type="text" id="sequelle_mentaux_2" name="sequelle_mentaux_3" placeholder="Dérangement mental"></p>
+        </fieldset>
+	</fieldset>-->
+</form>
+</body>
+</html>
