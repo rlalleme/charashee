@@ -42,7 +42,7 @@ The page (simplified) structure should be somthing like:
 <html>
   <head>...</head>
   <body>
-    <form nclass="toSave"  id="charashee" style="display:none;">
+    <form class="toSave"  id="charashee" style="display:none;">
       <input name="playerId" id="playerId" type="text" readonly>
       <input name="game" id="game" type="text" value="Game Name">
     </form>
@@ -98,8 +98,8 @@ The page (simplified) structure should be somthing like:
 <html>
   <head>...</head>
   <body>
-    <form nclass="toSave"  id="gm-info">
-      <input name="tid" id="tid" type="text" readonly">
+    <form class="toSave"  id="gm-info">
+      <input name="tid" id="tid" type="text" readonly>
       <input name="game" id="game" type="text" value="Game Name" style="display:none;">
       <input name="master" id="master" type="text">
     </form>
