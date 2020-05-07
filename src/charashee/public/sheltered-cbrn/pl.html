@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="pl.css">
+</head>
+<body>
+
+<div class="container">
+	<form>
+		<div class="row my-5 py-4">
+			<div class="col-sm-1">
+				<h1>SHELTERED CBRN</h1>
+			</div>
+	
+			<div class="col-sm-2">
+				<fieldset>
+					<legend>Attributs</legend>
+					
+					<label for="phys">Physique :</label>
+					<input type="number" id="phys" name="phys" min="1" max="5">
+					<label for="char">Charisme :</label>
+					<input type="number" id="char" name="char" min="1" max="5">
+					<label for="ing">Ingénieur :</label>
+					<input type="number" id="ing" name="ing" min="1" max="5">
+					<label for="esp">Esprit :</label>
+					<input type="number" id="esp" name="esp" min="1" max="5">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Skills</legend>
+					
+					<label for="phys1">Blatte (Phy) :</label>
+					<input type="number" id="phys1" name="phys1" min="1" max="5">
+					<label for="phys2">Brutalité (Phy) :</label>
+					<input type="number" id="phys2" name="phys2" min="1" max="5">
+					<label for="phys3">Assurance (Phy) :</label>
+					<input type="number" id="phys3" name="phys3" min="1" max="5">
+
+					<label for="char1">Réseau (Cha) :</label>
+					<input type="number" id="char1" name="char1" min="1" max="5">
+					<label for="char2">Charmeur (Cha) :</label>
+					<input type="number" id="char2" name="char2" min="1" max="5">
+					<label for="char3">Entourloupe (Cha) :</label>
+					<input type="number" id="char3" name="char3" min="1" max="5">
+
+					<label for="ing1">Bidouillage (Ing) :</label>
+					<input type="number" id="ing1" name="ing1" min="1" max="5">
+					<label for="ing2">Evaluation (Ing) :</label>
+					<input type="number" id="ing2" name="ing2" min="1" max="5">
+
+					<label for="esp1">Fouine (Esp) :</label>
+					<input type="number" id="esp1" name="esp1" min="1" max="5">
+					<label for="esp2">Lémurien (Esp) :</label>
+					<input type="number" id="esp2" name="esp2" min="1" max="5">
+				</fieldset>
+
+
+				<fieldset class="status">
+					<legend>Etats</legend>
+					
+					<div class="d-flex justify-content-between">
+						<div><label for="state1">Troublé :</label></div>
+						<div><input type="checkbox" id="state1" name="state1"></div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<div><label for="state2">Épuisé :</label></div>
+						<div><input type="checkbox" id="state2" name="state2"></div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<div><label for="state3">Blessé :</label></div>
+						<div><input type="checkbox" id="state3" name="state3"></div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<div><label for="state4">Irradié :</label></div>
+						<div><input type="checkbox" id="state4" name="state4"></div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<div><label for="state5">Assoiffé :</label></div>
+						<div><input type="checkbox" id="state5" name="state5"></div>
+					</div>
+				</fieldset>
+			</div>
+			
+			<div class="col-sm-9 pr-4">
+				<fieldset>
+					<legend>Personnage</legend>
+					
+					<label for="pname">Nom du joueur :</label>
+					<input type="text" id="pname" name="pname" placeholder="Joueur">
+					
+					<label for="cname">Nom du personnage :</label>
+					<input type="text" id="cname" name="cname" placeholder="Personnage">
+
+					<div class="row">
+						<div class="col-sm-5">
+							<label for="age">Âge :</label>
+							<input type="number" id="age" name="age" min="0" max="100" step="1" placeholder="Âge">
+						</div>
+						<div class="col-sm-7">
+							<label for="type">Archétype :</label>
+							<input type="text" id="type" name="type" placeholder="Archétype">
+						</div>
+					</div>
+					
+					<label for="anchor">Ancre :</label>
+					<input type="text" id="anchor" name="anchor" placeholder="Ancre">
+
+					<label for="motivation">Motivation :</label>
+					<input type="text" id="motivation" name="motivation" placeholder="Motivation">
+
+					<label for="faille">Faille :</label>
+					<input type="text" id="faille" name="faille" placeholder="Faille">
+
+					<label for="valeur">Valeur :</label>
+					<input type="text" id="valeur" name="valeur" placeholder="Valeur">
+
+					<label for="description">Description :</label>
+					<textarea id="description" name="description" placeholder="Description"></textarea>
+				</fieldset>
+
+				<!-- Import de l'image par l'utilisateur = attente de la prochaine version
+				<form>
+				<label for="myfile">Sélectionner un fichier:</label>
+				<input type="file" id="myfile" name="myfile">
+				</form>
+				-->
+
+				<fieldset>
+					<legend>Inventaire</legend>
+
+					<input type="text" id="item1" name="item1">
+					<input type="text" id="item2" name="item2">
+					<input type="text" id="item3" name="item3">
+					<input type="text" id="item4" name="item4">
+					<input type="text" id="item5" name="item5">
+<!-- 					<input type="text" id="item6" name="item6"> -->
+<!-- 					<input type="text" id="item7" name="item7"> -->
+<!-- 					<input type="text" id="item8" name="item8"> -->
+<!-- 					<input type="text" id="item9" name="item9"> -->
+<!-- 					<input type="text" id="item10" name="item10"> -->
+				</fieldset>
+
+				<fieldset>
+					<legend>Expertises</legend>
+					
+					<input type="text" id="exp1" name="exp1">
+					<input type="text" id="exp2" name="exp2">
+					<input type="text" id="exp3" name="exp3">
+<!-- 					<input type="text" id="exp4" name="exp4"> -->
+<!-- 					<input type="text" id="exp5" name="exp5"> -->
+<!-- 					<input type="text" id="exp6" name="exp6"> -->
+<!-- 					<input type="text" id="exp7" name="exp7"> -->
+<!-- 					<input type="text" id="exp8" name="exp8"> -->
+<!-- 					<input type="text" id="exp9" name="exp9"> -->
+<!-- 					<input type="text" id="exp10" name="exp10"> -->
+				</fieldset>
+
+				<fieldset>
+					<legend>Relations</legend>
+
+					<input type="text" id="rel1" name="rel1">
+					<input type="text" id="rel2" name="rel2">
+					<input type="text" id="rel3" name="rel3">
+<!-- 					<input type="text" id="rel4" name="rel4"> -->
+<!-- 					<input type="text" id="rel5" name="rel5"> -->
+<!-- 					<input type="text" id="rel6" name="rel6"> -->
+<!-- 					<input type="text" id="rel7" name="rel7"> -->
+<!-- 					<input type="text" id="rel8" name="rel8"> -->
+<!-- 					<input type="text" id="rel9" name="rel9"> -->
+<!-- 					<input type="text" id="rel10" name="rel10"> -->
+				</fieldset>
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+@font-face {
+	font-family: "Ayla";
+	src: url("font/AylaCSscript.ttf") format("ttf"),
+		url("font/AylaCSscript.woff") format("woff");
+}
+@font-face {
+	font-family: "Locust";
+	src: url("font/LocustResistance.ttf") format("ttf"),
+		url("font/LocustResistance.woff") format("woff");
+}
+@font-face {
+	font-family: "Comic Note";
+	src: url("font/ComicNoteSmooth.ttf") format("ttf"),
+		url("font/ComicNoteSmooth.woff") format("woff");
+}
+
+h1, legend {
+	font-variant: small-caps;
+	font-family: "Locust";
+}
+
+h1 {
+	writing-mode: sideways-lr;
+	margin-top: 36px;
+	font-size: 3.5em;
+	margin: 0px;
+	color: #3C3C3C;
+}
+
+body {
+	font-family: "Comic Note";
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+.container {
+	background-image: url("img/ShelteredCBRN_BG.jpg");
+	background-size: auto 100%;
+}
+
+legend {
+	width: initial;
+	padding-left: 10px;
+	padding-right: 14px;
+	font-size: 1.2em;
+	margin-bottom: 0px;
+	background-color: #000000;
+	color: #D7D7D7;
+	position: relative;
+	left: -12px;
+	box-sizing: content-box;
+	width: 100%;
+}
+form fieldset {
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+form fieldset label {
+	display: block;
+	font-size: 1.25em;
+	font-variant: small-caps;
+	margin-top: 2px;
+	margin-bottom: 0;
+}
+fieldset {
+	border: 2px solid black;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+input, textarea {
+	width: 100%;
+	background-color: #00000000;
+	color: #FFFFFF;
+	border: 1px solid black;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	font-size: 1.25em;
+}
