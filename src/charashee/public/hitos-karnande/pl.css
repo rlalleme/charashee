@@ -1,5 +1,11 @@
-h1, legend, label {
+h1, legend {
 	font-variant: small-caps;
+}
+
+legend {
+	width: initial;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /* form fieldset .labelNotAbove{ clear: both; } */
@@ -10,6 +16,9 @@ form fieldset {
 form fieldset label {
 	display: block;
 	font-size: 0.75em;
+	font-variant: small-caps;
+	margin-top: 8px;
+	margin-bottom: 0;
 }
 input {
 	width: 100%;
@@ -29,8 +38,7 @@ fieldset {
 	padding-bottom: 20px;
 }
 label {
-	margin-top: 8px;
-	margin-bottom: 0;
+	margin: 0;
 }
 
 .skills .number {

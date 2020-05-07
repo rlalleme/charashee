@@ -2,7 +2,6 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,49 +25,51 @@
 	</script>
 </head>
 <body>
-<h1>Karnande - powered by Hitos</h1>
+<div class="container mb-3 text-center">
+	<h1>Karnande - powered by Hitos</h1>
+</div>
 
-<!--TODO RAPH Descndre label plus proche des champs-->
+<form class="toSave"  id="charashee" style="display:none;">
+	<input name="playerId" id="playerId" type="text" readonly>
+	<input name="game" id="game" type="text" value="Hitos - Karnande">
+</form>
 
 <div class="container">
-	<form>
+	<form class="toSave" id="hitos">
 		<div class="row">
 			<div class="col-sm-6">
 				<fieldset>
 					<legend>Identité</legend>
 					<div class="row">
-						<div class="col-sm-6 px-1"><label for="player">Joueur</label><input type="text" id="player" name="player" class="w-100" placeholder="Joueur"></div>
-						<div class="col-sm-6 px-1"><label for="character">Personnage</label><input type="text" id="character" name="character" class="w-100" placeholder="Personnage"></div>
+						<div class="col-sm-6 pr-1"><label for="player">Joueur</label><input type="text" id="player" name="player" class="w-100" placeholder="Joueur"></div>
+						<div class="col-sm-6 pl-1"><label for="character">Personnage</label><input type="text" id="character" name="character" class="w-100" placeholder="Personnage"></div>
 					</div>
 					<div class="row">
-						<div class="col-sm-2 p-0"><label for="ascendance">Ascendance</label>
-						<select id="ascendance">s
-							<option value="elis">Elis</option>
-							<option value="enis">Enis</option>
-							<option value="dragis">Dragis</option>
-							<option value="metis">Métis</option>
-						</select>
+						<div class="col-sm-2 pr-2"><label for="ascendance">Ascendance</label>
+							<select id="ascendance" nqme="ascendance">
+								<option value="elis">Elis</option>
+								<option value="enis">Enis</option>
+								<option value="dragis">Dragis</option>
+								<option value="metis">Métis</option>
+							</select>
 						</div>
-						<div class="col-sm-5 px-1"><label for="origine">Origine</label><input type="text" id="origine" name="origine" placeholder="Origne"></div>
-						<div class="col-sm-5 px-1"><label for="genre">Genre</label><input type="text" id="genre" name="genre" placeholder="Genre"></div>
+						<div class="col-sm-5 pl-2 pr-1"><label for="origine">Origine</label><input type="text" id="origine" name="origine" placeholder="Origne"></div>
+						<div class="col-sm-5 pl-1"><label for="genre">Genre</label><input type="text" id="genre" name="genre" placeholder="Genre"></div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12 px-1"><label for="descr">Description</label><textarea id="descr" name="descr" placeholder="Description"></textarea></div>
+						<div class="col-sm-12"><label for="descr">Description</label><textarea id="descr" name="descr" placeholder="Description"></textarea></div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12 px-1"><label for="concept">Concept</label><input type="text" id="concept" name="concept" placeholder="Concept"></div>
+						<div class="col-sm-12"><label for="concept">Concept</label><input type="text" id="concept" name="concept" placeholder="Concept"></div>
 					</div>
 					<div class="row">
-						<div class="col-sm-12 px-1"><label for="citation">Citation</label><input type="text" id="citation" name="citation" placeholder="Citation"></div>
+						<div class="col-sm-12"><label for="citation">Citation</label><input type="text" id="citation" name="citation" placeholder="Citation"></div>
 					</div>
-		<!--		<fieldset>
-				<legend>Traits intrinsèques</legend>
-				<p><textarea id="trait_intr" name="trait_intr" placeholder="Traits Intrinsèques"></textarea></p>
 				</fieldset>
+				
 				<fieldset>
-				<legend>Pouvoirs spéciaux</legend>
-				<p><textarea id="pouv" name="pouv" placeholder="Pouvoirs spéciaux"></textarea></p>
-				</fieldset>-->
+					<legend>Traits intrinsèques</legend>
+					<textarea id="trait_intr" name="trait_intr" placeholder="Traits Intrinsèques"></textarea>
 				</fieldset>
 			</div>
 			
@@ -78,17 +79,22 @@
 					<legend>Faits Marquants</legend><!-- POUR MJ : voir les faits -->
 					<div class="d-flex py-1">
 						<div class="descr"><input type="text" id="faits_marquants_1" name="faits_marquants_1" placeholder="Fait marquant"></div>
-						<div class="used"><input type="checkbox" id="faits_marquants_1_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_1_epuise" name="faits_marquants_1_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="descr"><input type="text" id="faits_marquants_2" name="faits_marquants_2" placeholder="Fait marquant"></div>
-						<div class="used"><input type="checkbox" id="faits_marquants_2_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_2_epuiser" name="faits_marquants_2_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="descr"><input type="text" id="faits_marquants_3" name="faits_marquants_3" placeholder="Fait marquant"></div>
-						<div class="used"><input type="checkbox" id="faits_marquants_3_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_3_epuiser" name="faits_marquants_3_epuise"></div>
+					</div>
+					
+					<div class="d-flex py-1">
+						<div class="descr"><input type="text" id="faits_marquants_4" name="faits_marquants_4" placeholder="Fait marquant"></div>
+						<div class="used"><input type="checkbox" id="faits_marquants_4_epuiser" name="faits_marquants_4_epuise"></div>
 					</div>
 				</fieldset>
 			
@@ -96,6 +102,11 @@
 					<legend>Complication</legend><!-- POUR MJ : voir les complications -->
 					<input class="w-100 my-1" type="text" id="complication_1" name="complication_1" placeholder="Complication">
 					<input class="w-100 my-1" type="text" id="complication_2" name="complication_2" placeholder="Complication">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Pouvoirs spéciaux</legend>
+					<textarea id="pouvoir" name="pouvoir" placeholder="Pouvoirs spéciaux"></textarea>
 				</fieldset>
 			</div>
 		</div>
@@ -110,32 +121,32 @@
 					<div class="d-flex">
 						<div class="number"><input type="number" id="force" name="force" min="0" max="13"></div>
 						<div class="descr"><input type="text" id="force_trait" name="force_trait"></div>
-						<div class="used"><input type="checkbox" id="force_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="force_epuise" name="force_epuise"></div>
 					</div>
 					<label for="reflexes">Réflexes</label>
 					<div class="d-flex">
 						<div class="number"><input type="number" id="reflexes" name="reflexes" min="0" max="13"></div>
 						<div class="descr"><input type="text" id="reflexes_trait" name="reflexes_trait"></div>
-						<div class="used"><input type="checkbox" id="reflexes_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="reflexes_epuise" name="reflexes_epuise"></div>
 					</div>
 					<label for="volonte">Volonté</label>
 					<div class="d-flex">	
 						<div class="number"><input type="number" id="volonte" name="volonte" min="0" max="13"></div>
 						<div class="descr"><input type="text" id="volonte_trait" name="volonte_trait"></div>
-						<div class="used"><input type="checkbox" id="volonte_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="volonte_epuise" name="volonte_epuise"></div>
 					</div>
 					<label for="intellecte">Intellect</label>
 					<div class="d-flex">	
 						<div class="number"><input type="number" id="intellecte" name="intellecte" min="0" max="13"></div>
 						<div class="descr"><input type="text" id="intellecte_trait" name="intellecte_trait"></div>
-						<div class="used"><input type="checkbox" id="intellecte_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="intellecte_epuise" name="intellecte_epuise"></div>
 					</div>
 				</fieldset>
 <!-- 			</div> -->
 			
 <!-- 			<div class="col-sm-12 skills"> -->
 				<fieldset>
-					<!--TODO RAPH Mettre icon en début de ligne, tooltip contient le texte-->
+					<!--TODO RAPH Mettre tooltip sur logos contient le texte-->
 					<!--TODO RAPH barrer le texte est la valeur quand épuisé-->
 					<legend>Compétences</legend><!-- POUR MJ : voir les traits -->
 					<!-- possibilité de mettre des images pour chaque compétence à la place du nom qui serait en label si on passe la souris sur l'image ? -->
@@ -143,49 +154,49 @@
 						<div class="logo physique" title="Condition Physique"></div>
 						<div class="number"><input type="number" id="condition_physique" name="condition_physique" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="condition_physique_trait" name="condition_physique_trait"></div>
-						<div class="used"><input type="checkbox" id="condition_physique_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="condition_physique_epuise" name="condition_physique_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo combat" title="Combat"></div>
 						<div class="number"><input type="number" id="combat" name="combat" min="0" max="10"></div>
-						<div class="descr"><input type="text" id="condition_physique_trait" name="combat_trait"></div>
-						<div class="used"><input type="checkbox" id="combat_epuiser" name="epuiser"></div>
+						<div class="descr"><input type="text" id="combat_trait" name="combat_trait"></div>
+						<div class="used"><input type="checkbox" id="combat_epuise" name="combat_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo interaction" title="Interaction"></div>
 						<div class="number"><input type="number" id="interaction" name="interaction" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="interaction_trait" name="interaction_trait"></div>
-						<div class="used"><input type="checkbox" id="interaction_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="interaction_epuise" name="interaction_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo perception" title="Peception"></div>
 						<div class="number"><input type="number" id="perception" name="perception" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="perception_trait" name="perception_trait"></div>
-						<div class="used"><input type="checkbox" id="perception_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="perception_epuise" name="perception_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo subterfuge" title="Subterfuge"></div>
 						<div class="number"><input type="number" id="subterfuge" name="subterfuge" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="subterfuge_trait" name="subterfuge_trait"></div>
-						<div class="used"><input type="checkbox" id="subterfuge_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="subterfuge_epuise" name="subterfuge_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo culture" title="Culture"></div>
 						<div class="number"><input type="number" id="culture" name="culture" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="culture_trait" name="culture_trait"></div>
-						<div class="used"><input type="checkbox" id="culture_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="culture_epuise" name="culture_epuise"></div>
 					</div>
 					
 					<div class="d-flex py-1">
 						<div class="logo profession" title="Profession"></div>
 						<div class="number"><input type="number" id="profession" name="profession" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="profession_trait" name="profession_trait"></div>
-						<div class="used"><input type="checkbox" id="profession_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="profession_epuise" name="profession_epuise"></div>
 					</div>
 					<!-- possibilité d'en ajouter ? avec un bouton + -->
 		<!--TODO RAPH Ajouter un bouton pour ajouter une compétence : icones dans une liste, tooltip/nom à définir par l'user-->
@@ -199,7 +210,7 @@
 						<div class="logo psychique" title="Autre 1"></div>
 						<div class="number"><input type="number" id="autre_1" name="autre_1" min="0" max="10"></div>
 						<div class="descr"><input type="text" id="autre_1_trait" name="autre_1_trait"></div>
-						<div class="used"><input type="checkbox" id="autre_1_epuiser" name="epuiser"></div>
+						<div class="used"><input type="checkbox" id="autre_1_epuise" name="autre_1_epuise"></div>
 					</div>
 					<!-- possibilité d'en ajouter ? avec un bouton + -->
 		<!--TODO RAPH Ajouter un bouton pour ajouter une compétence : icones dans une liste, tooltip/nom à définir par l'user-->
@@ -327,7 +338,7 @@
 					
 					<table>
 						<tr>
-							<td><input type="checkbox" id="dege_1" name="deg_phy_bl_1"></td>
+							<td><input type="checkbox" id="deg_phy_bl_1" name="deg_phy_bl_1"></td>
 							<td><input type="checkbox" id="deg_phy_bl_2" name="deg_phy_bl_2"></td>
 							<td><input type="checkbox" id="deg_phy_bl_3" name="deg_phy_bl_3"></td>
 							<td><input type="checkbox" id="deg_phy_bl_4" name="deg_phy_bl_4"></td>
@@ -345,7 +356,7 @@
 							<td><label>Blessé (-2)</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="dege_1" name="deg_phy_hd_1"></td>
+							<td><input type="checkbox" id="deg_phy_hd_1" name="deg_phy_hd_1"></td>
 							<td><input type="checkbox" id="deg_phy_hd_2" name="deg_phy_hd_2"></td>
 							<td><input type="checkbox" id="deg_phy_hd_3" name="deg_phy_hd_3"></td>
 							<td><input type="checkbox" id="deg_phy_hd_4" name="deg_phy_hd_4"></td>
@@ -363,7 +374,7 @@
 							<td><label>Handicapé (-5)</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="dege_1" name="deg_phy_mo_1"></td>
+							<td><input type="checkbox" id="deg_phy_mo_1" name="deg_phy_mo_1"></td>
 							<td><input type="checkbox" id="deg_phy_mo_2" name="deg_phy_mo_2"></td>
 							<td><input type="checkbox" id="deg_phy_mo_3" name="deg_phy_mo_3"></td>
 							<td><input type="checkbox" id="deg_phy_mo_4" name="deg_phy_mo_4"></td>
@@ -399,10 +410,21 @@
 		</div>
 	</form>
 </div>
-<!-- ce serait bien que ce soit plutôt placer sur le côté pour tout avoir à vu -->
-<form>
 
-<!--	<fieldset>
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<!--<button id='joinTable' class='btn btn-secondary'>Join a table</button>-->
+		<button id='export' class='btn btn-secondary mx-2'>Export</button>
+		<span>
+			<label for='import' class='btn btn-secondary'>Import</label>
+			<input id='import' name='import' style='visibility: hidden; hegiht: 0px; width: 0px;' type='file' accept='application/json,.json'>
+		</span>
+	</div>
+</div>
+<!-- ce serait bien que ce soit plutôt placer sur le côté pour tout avoir à vu -->
+<!--<form>
+
+<fieldset>
     <legend>Santé Mentale</legend>
 		<p><label for="sang_froid">Sang-froid</label><input type="text" id="valeur_sang_froid" name="valeur_sang_froid" placeholder="VOL+INT/2"></p>
 		<p><label for="stabilite">Stabilité</label><input type="text" id="valeur_stabilite" name="valeur_stabilite" placeholder="Sang-froid*3"></p>
@@ -415,7 +437,12 @@
             <p><input type="text" id="sequelle_mentaux_2" name="sequelle_mentaux_2" placeholder="Dérangement mental"></p>
             <p><input type="text" id="sequelle_mentaux_2" name="sequelle_mentaux_3" placeholder="Dérangement mental"></p>
         </fieldset>
-	</fieldset>-->
-</form>
+	</fieldset>
+</form>-->
+	<script src="../libs/paho-mqtt.js" type="text/javascript"></script>
+	<script src="../libs/populate.js" type="text/javascript"></script>
+	<script src="../libs/lzstring.js" type="text/javascript"></script>
+	<script src="../libs/sheet-mem.js" type="text/javascript"></script>
+	<script src="../libs/pl.js" type="text/javascript"></script>
 </body>
 </html>
