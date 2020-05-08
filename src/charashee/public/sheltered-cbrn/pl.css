@@ -46,7 +46,7 @@ body {
 	background-color: #000000;
 }
 
-.container {
+#sheet {
 	background-image: url("img/ShelteredCBRN_BG.jpg");
 	background-size: auto 100%;
 }
