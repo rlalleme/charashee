@@ -1,0 +1,29 @@
+.label-border div.col-9, .label-border div.col-10 {
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+}
+
+.form-control, .form-select, .input-group-text {
+	border-top: 1px solid #ced4da;
+}
+
+.rose-bg, .rose-bg-line, .input-group-text {
+	background: #F5F5F5;
+}
+
+legend {
+	background: #E1E1E1;
+}
+
+fieldset {
+	border: medium solid #a0a0a0;
+	border-radius: 4px;
+}
+
+input.form-control, select.form-select, textarea.form-control {
+	background-color: white;
+}
+
+:not(.form-switch) .form-check-input[type="checkbox"] {
+	border: 1px solid black;
+}

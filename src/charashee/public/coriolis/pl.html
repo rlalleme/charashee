@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+	<link rel="icon" href="img/coriolis-fav.png" />
+	<!-- Set Favicon -->
+
+	<link rel="stylesheet" type="text/css" href="pl.css">
+	<link rel="stylesheet" type="text/css" id="active_theme" href="theme.dark.css">
+</head>
+<body>
+<div class="container sheet-bg">
+
+<div class="container mb-3 text-center">
+	<h1 id="coriolis-banner"></h1>
+</div>
+
+<form class="toSave"  id="charashee" style="display:none;">
+	<input name="playerId" id="playerId" type="text" readonly>
+	<input name="game" id="game" type="text" value="Coriolis">
+</form>
+
+<!-- TODO
+ [ ] Create GM page
+ [ ] Create Spaceship page
+-->
+
+<div class="container" id="sheet">
+	<form class="toSave" id="coriolis">
+		<div class="row">
+			<div class="col-sm-4">
+				<fieldset class="rose-bg">
+					<legend>Attributs</legend>
+					<div class="row label-border">
+						<div class="col-10">
+							<label for="agility">Agilité :</label>	
+						</div>
+						<div class="col">
+							<input type="number" min="1" max="10" id="agility" name="agility" class="form-control py-2" onchange="updateAttribute('agility')">
+						</div>
+					</div>
+					<div class="row label-border">
+						<div class="col-10">
+							<label for="wits">Astuce :</label>
+						</div>
+						<div class="col">
+							<input type="number" min="1" max="10" id="wits" name="wits" class="form-control py-2" onchange="updateAttribute('wits')">
+						</div>
+					</div>
+					<div class="row label-border">
+						<div class="col-10">
+							<label for="empathy">Empathie :</label>
+						</div>
+						<div class="col">
+							<input type="number" min="1" max="10" id="empathy" name="empathy" class="form-control py-2" onchange="updateAttribute('empathy')">
+						</div>
+					</div>
+					<div class="row label-border">
+						<div class="col-10">
+							<label for="strength">Vigueur :</label>
+						</div>
+						<div class="col">
+							<input type="number" min="1" max="10" id="strength" name="strength" class="form-control py-2" onchange="updateAttribute('strength')">
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>Blessures</legend>
+					<div class="row rose-bg-line">
+						<div class="col-8 ps-0">
+							<label for="hp" class="py-2">Points de vie :</label>	
+						</div>
+						<div class="col pe-0 input-group">
+							<input type="number" min="1" max="15" id="hp" name="hp" class="form-control py-2">
+							<span class="input-group-text" id="hp_disp">    </span>
+						</div>
+					</div>
+					<div class="form-floating">
+						<input type="text" id="critical_injury_1" name="critical_injury_1" class="form-control" placeholder="Blessure critique">
+						<label for="critical_injury_1">Blessure critique :</label>
+					</div>
+					<input type="text" id="critical_injury_2" name="critical_injury_2" class="form-control py-2">
+					<input type="text" id="critical_injury_3" name="critical_injury_3" class="form-control py-2">
+					
+					<div class="row rose-bg-line">
+						<div class="col-8 ps-0">
+							<label for="mp" class="py-2">Points d'esprit :</label>
+						</div>
+						<div class="col pe-0 input-group">
+							<input type="number" min="1" max="15" id="mp" name="mp" class="form-control py-2">
+							<span class="input-group-text" id="mp_disp">    </span>
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset class="rose-bg">
+					<legend>Irradiation</legend>
+					<div class="d-flex pt-2">
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_1" name="radiation_1">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_2" name="radiation_2">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_3" name="radiation_3">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_4" name="radiation_4">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_5" name="radiation_5">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_6" name="radiation_6">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_7" name="radiation_7">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_8" name="radiation_8">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_9" name="radiation_9">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="radiation_10" name="radiation_10">
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset class="rose-bg">
+					<legend>Expérience</legend>
+					<div class="d-flex pt-2">
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_1" name="experience_1">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_2" name="experience_2">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_3" name="experience_3">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_4" name="experience_4">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_5" name="experience_5">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_6" name="experience_6">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_7" name="experience_7">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_8" name="experience_8">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_9" name="experience_9">
+						</div>
+						<div class="flex-fill text-center">
+							<input class="form-check-input" type="checkbox" id="experience_10" name="experience_10">
+						</div>
+					</div>
+				</fieldset>
+			</div>
+			
+			<div class="col">
+				<fieldset>
+					<div class="row">
+						<div class="col-sm-7 pe-sm-0">
+							<div class="form-floating">
+								<input type="text" id="player" name="player" class="form-control" placeholder="Joueur">
+								<label for="player">Joueur :</label>
+							</div>
+						</div>
+						<div class="col ps-sm-0">
+							<div class="form-floating">
+								<input type="text" id="role" name="role" class="form-control" placeholder="Rôle">
+								<label for="role">Rôle :</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-7 pe-sm-0">
+							<div class="form-floating">
+								<input type="text" id="character" name="character" class="form-control" placeholder="Personnage">
+								<label for="character">Personnage :</label>
+							</div>
+						</div>
+						<div class="col ps-sm-0">
+							<div class="form-floating">
+								<input type="text" id="background" name="background" class="form-control" placeholder="Historique">
+								<label for="background">Historique :</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-7 pe-sm-0">
+							<div class="form-floating">
+								<input type="text" id="concept" name="concept" class="form-control" placeholder="Concept">
+								<label for="concept">Concept :</label>
+							</div>
+						</div>
+						<div class="col ps-sm-0">
+							<div class="form-floating">
+								<input type="text" id="icon" name="icon" class="form-control" placeholder="Icône">
+								<label for="icon">Icône :</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-7 pe-sm-0">
+							<div class="form-floating">
+								<input type="text" id="group_concept" name="group_concept" class="form-control form-control-sm" placeholder="Concept de groupe">
+								<label for="group_concept">Concept de groupe :</label>
+							</div>
+						</div>
+						<div class="col ps-sm-0">
+							<div class="row rose-bg-line">
+								<div class="col-10 ps-0">
+									<label for="reputation" class="py-2">Réputation :</label>
+								</div>
+								<div class="col ps-0 pe-0">
+									<input type="number" min="0" max="15" id="reputation" name="reputation" class="form-control py-2">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-floating">
+						<input type="text" id="personnal_problem" name="personnal_problem" class="form-control" placeholder="Problème personnel">
+						<label for="personnal_problem">Problème personnel :</label>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Apparence</legend>
+					<div class="form-floating">
+						<textarea id="face" name="face" class="form-control" placeholder="Visage"></textarea>
+						<label for="face">Visage :</label>
+						
+					</div>
+					<div class="form-floating">
+						<textarea id="clothing" name="clothing" class="form-control" placeholder="Vêtements"></textarea>
+						<label for="clothing">Vêtements :</label>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Relations avec les autres PJ</legend>
+					<div class="form-floating input-group">
+						<input type="text" id="pc1" name="pc1" class="form-control" placeholder="PJ 1">
+						<div class="header-title position-absolute end-0 pe-2">Ami</div>
+						<label for="pc1">PJ 1 :</label>
+						<div class="input-group-text">
+							<input class="form-check-input mt-0" type="checkbox" id="pc1_friend" name="pc1_friend" value="">
+						</div>
+					</div>
+					<div class="form-floating input-group">
+						<input type="text" id="pc2" name="pc2" class="form-control" placeholder="PJ 2">
+						<label for="pc2">PJ 2 :</label>
+						<div class="input-group-text">
+							<input class="form-check-input mt-0" type="checkbox" id="pc2_friend" name="pc2_friend" value="">
+						</div>
+					</div>
+					<div class="form-floating input-group">
+						<input type="text" id="pc3" name="pc3" class="form-control" placeholder="PJ 3">
+						<label for="pc3">PJ 3 :</label>
+						<div class="input-group-text">
+							<input class="form-check-input mt-0" type="checkbox" id="pc3_friend" name="pc3_friend" value="">
+						</div>
+					</div>
+					<div class="form-floating input-group">
+						<input type="text" id="pc4" name="pc4" class="form-control" placeholder="PJ 4">
+						<label for="pc4">PJ 4 :</label>
+						<div class="input-group-text">
+							<input class="form-check-input mt-0" type="checkbox" id="pc4_friend" name="pc4_friend" value="">
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+				<fieldset class="rose-bg">
+					<legend>Compétences</legend>
+					<div class="row">
+						<div class="col-sm-6 pe-sm-0">
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="dexterity">Dextérité (Agilité) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="dexterity" name="dexterity" class="form-control py-2" title="0" onchange="updateSkill('dexterity')">
+										<span class="input-group-text" id="dexterity_disp">    </span>
+									</div>
+									<div class="table-title position-absolute">Générales</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="force">Force (Vigueur) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="force" name="force" class="form-control py-2" title="0" onchange="updateSkill('force')">
+										<span class="input-group-text" id="force_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="infiltration">Infiltration (Agilité) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="infiltration" name="infiltration" class="form-control py-2" title="0" onchange="updateSkill('infiltration')">
+										<span class="input-group-text" id="infiltration_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="manipulation">Manipulation (Empathie) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="manipulation" name="manipulation" class="form-control py-2" title="0" onchange="updateSkill('manipulation')">
+										<span class="input-group-text" id="manipulation_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="melee">Mélée (Vigueur) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="melee" name="melee" class="form-control py-2" title="0" onchange="updateSkill('melee')">
+										<span class="input-group-text" id="melee_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="observation">Observation (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="observation" name="observation" class="form-control py-2" title="0" onchange="updateSkill('observation')">
+										<span class="input-group-text" id="observation_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="survival">Survie (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="survival" name="survival" class="form-control py-2" title="0" onchange="updateSkill('survival')">
+										<span class="input-group-text" id="survival_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="ranged">Tir (Agilité) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="ranged" name="ranged" class="form-control py-2" title="0" onchange="updateSkill('ranged')">
+										<span class="input-group-text" id="ranged_disp">    </span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col mt-5 mt-sm-0 ps-sm-0">
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="command">Commandement (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="command" name="command" class="form-control py-2" title="0" onchange="updateSkill('command')">
+										<span class="input-group-text" id="command_disp">    </span>
+									</div>
+									<div class="table-title table-title-alt position-absolute">Avancées</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="culture">Culture (Empathie) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="culture" name="culture" class="form-control py-2" title="0" onchange="updateSkill('culture')">
+										<span class="input-group-text" id="culture_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="data_djinn">Data Djinn (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="data_djinn" name="data_djinn" class="form-control py-2" title="0" onchange="updateSkill('data_djinn')">
+										<span class="input-group-text" id="data_djinn_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="medicurgy">Médirurgie (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="medicurgy" name="medicurgy" class="form-control py-2" title="0" onchange="updateSkill('medicurgy')">
+										<span class="input-group-text" id="medicurgy_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="pilot">Pilotage (Agilité) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="pilot" name="pilot" class="form-control py-2" title="0" onchange="updateSkill('pilot')">
+										<span class="input-group-text" id="pilot_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="mystic">Pouvoirs mystiques (Empathie) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="mystic" name="mystic" class="form-control py-2" title="0" onchange="updateSkill('mystic')">
+										<span class="input-group-text" id="mystic_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="science">Science (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="science" name="science" class="form-control py-2" title="0" onchange="updateSkill('science')">
+										<span class="input-group-text" id="science_disp">    </span>
+									</div>
+								</div>
+							</div>
+							<div class="row label-border">
+								<div class="col-9">
+									<label for="technology">Technologie (Astuce) :</label>
+								</div>
+								<div class="col">
+									<div class="input-group">
+										<input type="number" min="1" max="15" id="technology" name="technology" class="form-control py-2" title="0" onchange="updateSkill('technology')">
+										<span class="input-group-text" id="technology_disp">    </span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset class="rose-bg">
+					<legend>Armes</legend>
+					<div class="row">
+						<div class="col-sm-6 mb-0">
+							<div class="row">
+								<div class="col-7 pe-0">
+									<div class="form-floating">
+										<input type="text" id="weapon1" name="weapon1" class="form-control" placeholder="1">
+										<label for="weapon1">1</label>
+									</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon1_bonus" name="weapon1_bonus" class="form-control py-2">
+									<div class="table-title position-absolute">Bonus</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon1_init" name="weapon1_init" class="form-control py-2">
+									<div class="table-title position-absolute">Init</div>
+								</div>
+								<div class="col ps-0 pe-sm-0">
+									<input type="number" min="1" max="15" id="weapon1_damage" name="weapon1_damage" class="form-control py-2">
+									<div class="table-title position-absolute">Dégâts</div>
+								</div>
+							</div>
+						</div>
+						<div class="col mt-4 mt-sm-0">
+							<div class="row">
+								<div class="col pe-0 ps-sm-0">
+									<input type="text" id="weapon1_crit" name="weapon1_crit" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute">Crit</div>
+								</div>
+								<div class="col p-0">
+									<select class="form-select py-2" id="weapon1_range" name="weapon1_range">
+										<option selected value="0"></option>
+										<option value="close">Contact</option>
+										<option value="short">Courte</option>
+										<option value="long">Longue</option>
+										<option value="extreme">Extrème</option>
+									</select>
+									<div class="table-title table-title-alt position-absolute">Portée</div>
+								</div>
+								<div class="col-6 p-0 position-relative">
+									<input type="text" id="weapon1_comments" name="weapon1_comments" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute">Notes</div>
+									<div class="table-title table-title-alt position-absolute table-title-offest">Recharges</div>
+								</div>
+								<div class="col-3 ps-0">
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input mx-auto" id="weapon1_reload1" name="weapon1_reload1">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon1_reload2" name="weapon1_reload2">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon1_reload3" name="weapon1_reload3">
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon1_reload4" name="weapon1_reload4">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon1_reload5" name="weapon1_reload5">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon1_reload6" name="weapon1_reload6">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-5 mt-sm-0">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-7 pe-0">
+									<div class="form-floating">
+										<input type="text" id="weapon2" name="weapon2" class="form-control" placeholder="2">
+										<label for="weapon2">2</label>
+										<div class="table-title table-title-alt position-absolute d-block d-sm-none">Arme</div>
+									</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon2_bonus" name="weapon2_bonus" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Bonus</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon2_init" name="weapon2_init" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Init</div>
+								</div>
+								<div class="col ps-0 pe-sm-0">
+									<input type="number" min="1" max="15" id="weapon2_damage" name="weapon2_damage" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Dégâts</div>
+								</div>
+							</div>
+						</div>
+						<div class="col mt-4 mt-sm-0">
+							<div class="row">
+								<div class="col pe-0 ps-sm-0">
+									<input type="text" id="weapon2_crit" name="weapon2_crit" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Crit</div>
+								</div>
+								<div class="col p-0">
+									<select class="form-select py-2" id="weapon2_range" name="weapon2_range">
+										<option selected value="0"></option>
+										<option value="close">Contact</option>
+										<option value="short">Courte</option>
+										<option value="long">Longue</option>
+										<option value="extreme">Extrème</option>
+									</select>
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Portée</div>
+								</div>
+								<div class="col-6 p-0 position-relative">
+									<input type="text" id="weapon2_comments" name="weapon2_comments" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Notes</div>
+									<div class="table-title table-title-alt position-absolute table-title-offest d-block d-sm-none">Recharges</div>
+								</div>
+								<div class="col-3 ps-0">
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input mx-auto" id="weapon2_reload1" name="weapon2_reload1">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon2_reload2" name="weapon2_reload2">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon2_reload3" name="weapon2_reload3">
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon2_reload4" name="weapon2_reload4">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon2_reload5" name="weapon2_reload5">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon2_reload6" name="weapon2_reload6">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-5 mt-sm-0">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-7 pe-0">
+									<div class="form-floating">
+										<input type="text" id="weapon3" name="weapon3" class="form-control" placeholder="3">
+										<label for="weapon3">3</label>
+										<div class="table-title table-title-alt position-absolute d-block d-sm-none">Arme</div>
+									</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon3_bonus" name="weapon3_bonus" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Bonus</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon3_init" name="weapon3_init" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Init</div>
+								</div>
+								<div class="col ps-0 pe-sm-0">
+									<input type="number" min="1" max="15" id="weapon3_damage" name="weapon3_damage" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Dégâts</div>
+								</div>
+							</div>
+						</div>
+						<div class="col mt-4 mt-sm-0">
+							<div class="row">
+								<div class="col pe-0 ps-sm-0">
+									<input type="text" id="weapon3_crit" name="weapon3_crit" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Crit</div>
+								</div>
+								<div class="col p-0">
+									<select class="form-select py-2" id="weapon3_range" name="weapon3_range">
+										<option selected value="0"></option>
+										<option value="close">Contact</option>
+										<option value="short">Courte</option>
+										<option value="long">Longue</option>
+										<option value="extreme">Extrème</option>
+									</select>
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Portée</div>
+								</div>
+								<div class="col-6 p-0 position-relative">
+									<input type="text" id="weapon3_comments" name="weapon3_comments" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Notes</div>
+									<div class="table-title table-title-alt position-absolute table-title-offest d-block d-sm-none">Recharges</div>
+								</div>
+								<div class="col-3 ps-0">
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input mx-auto" id="weapon3_reload1" name="weapon3_reload1">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon3_reload2" name="weapon3_reload2">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon3_reload3" name="weapon3_reload3">
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon3_reload4" name="weapon3_reload4">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon3_reload5" name="weapon3_reload5">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon3_reload6" name="weapon3_reload6">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row mt-5 mt-sm-0">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-7 pe-0">
+									<div class="form-floating">
+										<input type="text" id="weapon4" name="weapon4" class="form-control" placeholder="4">
+										<label for="weapon4">4</label>
+										<div class="table-title table-title-alt position-absolute d-block d-sm-none">Arme</div>
+									</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon4_bonus" name="weapon4_bonus" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Bonus</div>
+								</div>
+								<div class="col p-0">
+									<input type="number" min="1" max="15" id="weapon4_init" name="weapon4_init" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Init</div>
+								</div>
+								<div class="col ps-0 pe-sm-0">
+									<input type="number" min="1" max="15" id="weapon4_damage" name="weapon4_damage" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Dégâts</div>
+								</div>
+							</div>
+						</div>
+						<div class="col mt-4 mt-sm-0">
+							<div class="row">
+								<div class="col pe-0 ps-sm-0">
+									<input type="text" id="weapon4_crit" name="weapon4_crit" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Crit</div>
+								</div>
+								<div class="col p-0">
+									<select class="form-select py-2" id="weapon4_range" name="weapon4_range">
+										<option selected value="0"></option>
+										<option value="close">Contact</option>
+										<option value="short">Courte</option>
+										<option value="long">Longue</option>
+										<option value="extreme">Extrème</option>
+									</select>
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Portée</div>
+								</div>
+								<div class="col-6 p-0 position-relative">
+									<input type="text" id="weapon4_comments" name="weapon4_comments" class="form-control py-2">
+									<div class="table-title table-title-alt position-absolute d-block d-sm-none">Notes</div>
+									<div class="table-title table-title-alt position-absolute table-title-offest d-block d-sm-none">Recharges</div>
+								</div>
+								<div class="col-3 ps-0">
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input mx-auto" id="weapon4_reload1" name="weapon4_reload1">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon4_reload2" name="weapon4_reload2">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon4_reload3" name="weapon4_reload3">
+										</div>
+									</div>
+									<div class="d-flex">
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon4_reload4" name="weapon4_reload4">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon4_reload5" name="weapon4_reload5">
+										</div>
+										<div class="flex-fill text-center">
+											<input type="checkbox" class="form-check-input" id="weapon4_reload6" name="weapon4_reload6">
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Notes</legend>
+					<textarea id="personal_notes" name="personal_notes" class="form-control" placeholder="Notes personnelles"></textarea>
+				</fieldset>
+			</div>
+			
+			<div class="col">
+				<fieldset>
+					<legend>Dons</legend>
+					<input type="text" id="talent_1" name="talent_1" class="form-control py-2">
+					<input type="text" id="talent_2" name="talent_2" class="form-control py-2">
+					<input type="text" id="talent_3" name="talent_3" class="form-control py-2">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Équipements</legend>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear1" name="gear1" class="form-control" placeholder="1">
+								<label for="gear1">1</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear1_bonus" name="gear1_bonus" class="form-control py-2">
+							<div class="table-title position-absolute">Bonus</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear2" name="gear2" class="form-control" placeholder="2">
+								<label for="gear2">2</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear2_bonus" name="gear2_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear3" name="gear3" class="form-control" placeholder="3">
+								<label for="gear3">3</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear3_bonus" name="gear3_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear4" name="gear4" class="form-control" placeholder="4">
+								<label for="gear4">4</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear4_bonus" name="gear4_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear5" name="gear5" class="form-control" placeholder="5">
+								<label for="gear5">5</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear5_bonus" name="gear5_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear6" name="gear6" class="form-control" placeholder="6">
+								<label for="gear6">6</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear6_bonus" name="gear6_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear7" name="gear7" class="form-control" placeholder="7">
+								<label for="gear7">7</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear7_bonus" name="gear7_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear8" name="gear8" class="form-control" placeholder="8">
+								<label for="gear8">8</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear8_bonus" name="gear8_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear9" name="gear9" class="form-control" placeholder="9">
+								<label for="gear9">9</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear9_bonus" name="gear9_bonus" class="form-control py-2">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 pe-0">
+							<div class="form-floating">
+								<input type="text" id="gear10" name="gear10" class="form-control" placeholder="10">
+								<label for="gear10">10</label>
+							</div>
+						</div>
+						<div class="col-2 ps-0">
+							<input type="number" min="1" max="15" id="gear10_bonus" name="gear10_bonus" class="form-control py-2">
+						</div>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Armure</legend>
+					<div class="row">
+						<div class="col-6 pe-0">
+							<input type="text" id="armor" name="armor" class="form-control py-2">
+						</div>
+						<div class="col-2 px-0">
+							<input type="number" min="1" max="15" id="armor_bonus" name="armor_bonus" class="form-control py-2">
+							<div class="table-title position-absolute">Prot.</div>
+						</div>
+						<div class="col ps-0">
+							<input type="text" id="armor_comment" name="armor_comment" class="form-control py-2">
+							<div class="table-title position-absolute">Notes</div>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<div class="form-check form-switch">
+				<input class="form-check-input py-0 my-0" type="checkbox" name="theme_selector" id="theme_selector" onclick="changeTheme()">
+				<label class="form-check-label py-0 my-0" for="theme_selector">Light theme</label>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="container mt-3">
+	<div class="d-flex justify-content-center">
+		<button id='joinTable' class='btn btn-secondary'>Join a table</button>
+		<button id='export' class='btn btn-secondary mx-2'>Export</button>
+		<span>
+			<label for='import' class='btn btn-secondary'>Import</label>
+			<input id='import' name='import' style='visibility: hidden; hegiht: 0px; width: 0px;' type='file' accept='application/json,.json'>
+		</span>
+	</div>
+</div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script>
+//Function to autoresize textearea
+$("textarea").each(function () {
+	this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:scroll;");
+}).on("input", function () {
+	this.style.height = "auto";
+	this.style.height = (this.scrollHeight) + "px";
+});
+
+//Function to update tootips with computed value
+//Called on change for the spinners
+function updateAttribute(attribute) {
+	switch (attribute) {
+		case 'agility':
+			updateSkill("dexterity");
+			updateSkill("infiltration");
+			updateSkill("ranged");
+			updateSkill("pilot");
+			break;
+		case 'wits':
+			updateSkill("observation");
+			updateSkill("survival");
+			updateSkill("data_djinn");
+			updateSkill("medicurgy");
+			updateSkill("science");
+			updateSkill("technology");
+			break;
+		case 'empathy':
+			updateSkill("manipulation");
+			updateSkill("command");
+			updateSkill("culture");
+			updateSkill("mystic");
+			break;
+		case 'strength':
+			updateSkill("force");
+			updateSkill("melee");
+			break;
+		default: console.error("Invalid attribute update");
+			break;
+	}
+	updatePoints();
+}
+
+//Actual function changing the tootltip content: handles all the cases (one field missing, ...)
+function updateSkill(skill) {
+	switch (skill) {
+		case "dexterity":
+		case "infiltration":
+		case "ranged":
+		case "pilot":
+			base="#agility";
+			break;
+		case "observation":
+		case "survival":
+		case "data_djinn":
+		case "medicurgy":
+		case "science":
+		case "technology":
+			base="#wits";
+			break;
+		case "manipulation":
+		case "command":
+		case "culture":
+		case "mystic":
+			base="#empathy";
+			break;
+		case "force":
+		case "melee":
+			base="#strength";
+			break;
+		default:console.error("Invalid skill update");
+			break;
+	}
+	
+	if(base !== undefined){
+		if($(base).val()){
+			if($("#"+skill).val()){
+				value=(parseInt($(base).val())+parseInt($("#"+skill).val()))
+			}else{
+				value=$(base).val()
+			}
+		}else{
+			if($("#"+skill).val()){
+				value=$("#"+skill).val()
+			}else{
+				value="1"
+			}
+		}
+		if(value<10) value="  "+value;
+		$("#"+skill+"_disp").text(value);
+	}
+}
+
+function updatePoints(){
+	if($("#strength").val() &&$("#agility").val()){
+		value=parseInt($("#strength").val())+parseInt($("#agility").val());
+		if(value<10) value="  "+value;
+		$("#hp_disp").text(value);
+	}else{
+		$("#hp_disp").text("    ");
+	}
+	
+	if($("#wits").val() &&$("#empathy").val()){
+		value=parseInt($("#wits").val())+parseInt($("#empathy").val());
+		if(value<10) value="  "+value;
+		$("#mp_disp").text(value);
+	}else{
+		$("#mp_disp").text("    ");
+	}
+}
+
+function changeTheme(){
+	newTheme=$("#theme_selector").prop("checked")?"light":"dark";
+	$("#active_theme").attr("href", "theme."+newTheme+".css");
+}
+
+function postContentLoad(){
+	updateAttribute('agility');
+	updateAttribute('wits');
+	updateAttribute('empathy');
+	updateAttribute('strength');
+	
+	changeTheme();
+};
+</script>
+
+<script src="../libs/paho-mqtt.js" type="text/javascript"></script>
+<script src="../libs/populate.js" type="text/javascript"></script>
+<script src="../libs/lzstring.js" type="text/javascript"></script>
+<script src="../libs/sheet-mem.js" type="text/javascript"></script>
+<script src="../libs/pl.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+body, .btn {
+	background-color: black;
+}
+
+.sheet-bg {
+	background: 50% 0%/contain url("img/background-top.png") no-repeat,
+	50% 100%/contain url("img/background-bottom.png") no-repeat,
+	0%/100% url("img/background-middle.png") repeat-y,
+	#000000;
+}
+
+.label-border div.col-9, .label-border div.col-10 {
+	border-top: 1px solid #7e756b;
+	border-bottom: 1px solid #7e756b;
+}
+
+.header-title, .table-title {
+	color: white;
+}
+
+.form-control, .form-select, .input-group-text {
+	border-top: 1px solid #7e756b;
+}
+
+.rose-bg {
+	background: url("img/light-bg.png") no-repeat;
+	background-position: 50% calc(50% + 20px);
+	background-size: cover;
+}
+
+.rose-bg-line {
+	background: 0%/calc(100%) url("img/light-bg.png") no-repeat;
+}
+
+legend {
+	color: white;
+	background: center url("img/legend.png");
+}
+
+fieldset {
+	border: medium solid #62584d;
+}
+
+input.form-control, select.form-select, textarea.form-control {
+	background-color: #e3dfdb;
+}
+
+:not(.form-switch) .form-check-input[type="checkbox"] {
+	border: 1px solid #7e756b;
+}
+
+.form-check-label {
+	color: white;
+}

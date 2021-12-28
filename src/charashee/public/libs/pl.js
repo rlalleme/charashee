@@ -16,6 +16,10 @@ $( document ).ready(function() {
 	$('#joinTable').click(joinTable);
 	$('#export').click(exportPlayer);
 	$('#import').change(importPlayer);
+	
+	if(typeof postContentLoad === "function"){
+		postContentLoad();
+	}
 });
 
 function joinTable() {
@@ -64,7 +68,7 @@ function importPlayer() {
 
 function setInputListeners() {
 	$("form.toSave :input").each(function(){
-		var input = $(this); 
+		var input = $(this);
 		input.unbind();
 		input.change(function() {
 			storeSheet(client, clientId);

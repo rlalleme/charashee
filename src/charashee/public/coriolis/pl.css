@@ -1,0 +1,133 @@
+@font-face {
+	font-family: "Foundry Gridnik-Bold";
+	src: url("font/FoundryGridnik-Bold.ttf") format("truetype");
+}
+
+body, .btn {
+	font-variant: small-caps;
+}
+
+#coriolis-banner {
+	background: center/70% url("img/coriolis.png") no-repeat;
+	height: 150px;
+}
+
+.form-floating input.form-control {
+	height: calc(2.5rem + 2px) !important;
+}
+
+.form-control, .form-select, .input-group-text {
+	border-radius: 0;
+}
+
+.label-border {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.label-border div.col-9, .label-border div.col-10 {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.label-border div.col {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+input[type=number]
+{
+	margin-right:0;
+	padding-right:0;
+	text-align: center;
+}
+
+.form-select {
+	background-position: right 0rem center;
+	padding-right: 16px;
+	padding-left: 0;
+}
+
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+	transform: scale(.85) translateY(-.85rem) translateX(.15rem);
+}
+
+.header-title {
+	transform: translateY(-2rem);
+}
+
+.table-title {
+	transform: translateY(-4.25rem);
+}
+
+	
+.table-title-offest {
+	right: -5em;
+}
+
+.header-title, .table-title {
+	font-variant: small-caps;
+	font-family: "Foundry Gridnik-Bold";
+	font-size: 0.9rem;
+}
+
+/* Equivalent to smallest class in bootstrap */
+@media (max-width: 576px) {
+	.table-title-alt {
+		color: black;
+	}
+}
+
+label {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.5em;
+}
+
+fieldset {
+	margin-top: 1rem;
+}
+
+:not(.form-switch) .form-check-input[type="checkbox"] {
+	margin-top: 0px;
+	border-radius: 0;
+}
+
+.rose-bg-line {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+legend {
+	padding-left: 0.5em;
+	margin-bottom: 0;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	font-family: "Foundry Gridnik-Bold";
+}
+
+.form-floating textarea.form-control {
+	max-height: 5rem;
+}
+
+#personal_snotes {
+max-height: 300px;
+}
+
+label {
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.form-floating label {
+	font-weight: inherit;
+}
+
+#theme_selector {
+	border-radius: 10px;
+}
+
+.form-check-label {
+	position: relative;
+	transform: translateY(-5px);
+}
