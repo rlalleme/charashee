@@ -19,20 +19,6 @@ h1, legend {
 	font-family: "Locust";
 }
 
-h1 {
-/* 	writing-mode: sideways-lr; */
-	transform:rotate(7deg);
-	-ms-transform:rotate(90deg);
-	-moz-transform:rotate(90deg);
-	-webkit-transform:rotate(90deg);
-	-o-transform:rotate(90deg);
-	
-	margin-top: 36px;
-	font-size: 3.5em;
-	margin: 0px;
-	color: #3C3C3C;
-}
-
 .logo {
 	background-image: url("img/ShelteredCBRN.png");
 	background-size: 50%;
@@ -75,7 +61,7 @@ form fieldset label {
 	font-variant: small-caps;
 	margin-top: 2px;
 	margin-bottom: 0;
-	color: #252529;
+	color: #c6c6c6;
 }
 fieldset {
 	border: 2px solid black;
