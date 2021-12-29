@@ -20,4 +20,4 @@ services:
 networks:
   backend:
     external:
-      name: "masterproxy-backend"
+      name: "masterproxy_backend"
