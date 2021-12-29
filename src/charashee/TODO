@@ -49,18 +49,26 @@ v1.1:
 X	Atteindre la racine liste les jeux disponbiles
 X	Robustifier le serveur : si la connexion ne s'établit pas ou n'importe quoi, le reste de la page (update url) doit marcher.
 X	Sur FEA la page se rafraichit trop souvent quand les joueurs écrivent leurs page et la lecture devient désagréable côté MJ
-	Faire un docker file pour la version local, la version HTTP et la version HTTPS full (gstion propre des ports)
-	Documenter le fork et la copie du docker
+	Faire un docker file pour la version local, la version HTTP et la version HTTPS full (gestion propre des ports)
+	Documenter le fork et la copie du docker - comment faire une instance chez soi
 X	FEA-Aigle - Changer un peu le style et le nom des cases
 	Le système marche pour un autre jeu
+	Sur le readme principal citer les autres readme et suivre le principe des quatres docs - https://documentation.divio.com/introduction/
 
 Next:
+	Rempalcer l'action Ctrl-S par export, et Ctrl-O par ouvrir - https://github.com/jeresig/jquery.hotkeys
 	Les joueurs on un lien pour envoyer leur page à quelqu'un en readonly, si techniquement possible elle s'update quand le joueur fais une màj
+	Better handle of missing co to server: prevent exit without export, warning label to tell something is wrong, exit "send" function prematurly, ... (it must prevent "Invalid state", triggered when an input creates an event but the server is not connected)
+	Pour dev: gaire un guide step by step. Parler aussi des fonctions avancées: postContentLoad, ...
 	Le bouton print fait un beau rendu (et permet aussi de print avec tous les champs vide, ou avec tous les champs dynamique vide)
 	Ctrl+s enregsitre la page en tant que PDF ou ne fait rien
 	Le GM peut ajouter des PNJ ou autre éléments qui sont stockés dans son URL et son json
 	Revert FEA-Aigle
 	Trouver une méthode pour pouvoir ajouter un thème à une fiche, sans avoir à la dupliquer
+	Add support to multilang for each game (equivalent to tr)
+	Add a pop-up on first connection (detected from a field in the record), that displays how-to use the charashee
+	Add a copy of the ho-to use on the welcome page
+	Add a pop-up when trying to close a tab to remind to save the file (with a field in the record to prevent it from proposing again)
 
 
 

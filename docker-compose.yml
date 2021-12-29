@@ -12,5 +12,12 @@ services:
       CERT_PATH: /etc/letsencrypt/live/gnosco.net
     ports:
       - '8899:8899'
+    networks:
+      - backend
     tty: true
     stdin_open: true
+
+networks:
+  backend:
+    external:
+      name: "masterproxy-backend"
