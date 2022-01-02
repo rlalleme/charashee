@@ -1,0 +1,17 @@
+@font-face {
+	font-family: "Foundry Gridnik-Bold";
+	src: url("font/FoundryGridnik-Bold.ttf") format("truetype");
+}
+
+#coriolis-banner {
+	background: center/70% url("img/coriolis.png") no-repeat;
+	height: 150px;
+}
+
+/* Move spinner button to the right */
+input[type=number]
+{
+	margin-right:0;
+	padding-right:0;
+	text-align: center;
+}

@@ -1,0 +1,12 @@
+#dark_points {
+	min-width: 80px;
+	max-width: 80px;
+}
+
+.label-border label {
+/* 	 Text overflow deviet "." */
+}
+
+.card-body .form-floating {
+	max-width: 50px;
+}

@@ -2,12 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-<!-- 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
-<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-<!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
 
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -15,6 +10,7 @@
 	<link rel="icon" href="img/coriolis-fav.png" />
 	<!-- Set Favicon -->
 
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="pl.css">
 	<link rel="stylesheet" type="text/css" id="active_theme" href="theme.dark.css">
 </head>
@@ -31,6 +27,8 @@
 </form>
 
 <!-- TODO
+ [ ] Réparer le problème de l'autosize des textarea
+ [ ] Aligner les compétences caluclés à droite
  [ ] Create GM page
  [ ] Create Spaceship page
 -->
@@ -83,7 +81,7 @@
 						</div>
 						<div class="col pe-0 input-group">
 							<input type="number" min="1" max="15" id="hp" name="hp" class="form-control py-2">
-							<span class="input-group-text" id="hp_disp">    </span>
+							<input type="text" class="input-group-text form-control disabled ps-0" id="hp_disp" name="hp_disp" readonly>
 						</div>
 					</div>
 					<div class="form-floating">
@@ -99,7 +97,7 @@
 						</div>
 						<div class="col pe-0 input-group">
 							<input type="number" min="1" max="15" id="mp" name="mp" class="form-control py-2">
-							<span class="input-group-text" id="mp_disp">    </span>
+							<input type="text" class="input-group-text form-control disabled ps-0" id="mp_disp" name="mp_disp" readonly>
 						</div>
 					</div>
 				</fieldset>
@@ -305,7 +303,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="dexterity" name="dexterity" class="form-control py-2" title="0" onchange="updateSkill('dexterity')">
-										<span class="input-group-text" id="dexterity_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="dexterity_disp" name="dexterity_disp" readonly>
 									</div>
 									<div class="table-title position-absolute">Générales</div>
 								</div>
@@ -317,7 +315,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="force" name="force" class="form-control py-2" title="0" onchange="updateSkill('force')">
-										<span class="input-group-text" id="force_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="force_disp" name="force_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -328,7 +326,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="infiltration" name="infiltration" class="form-control py-2" title="0" onchange="updateSkill('infiltration')">
-										<span class="input-group-text" id="infiltration_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="infiltration_disp" name="infiltration_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -339,7 +337,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="manipulation" name="manipulation" class="form-control py-2" title="0" onchange="updateSkill('manipulation')">
-										<span class="input-group-text" id="manipulation_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="manipulation_disp" name="manipulation_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -350,7 +348,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="melee" name="melee" class="form-control py-2" title="0" onchange="updateSkill('melee')">
-										<span class="input-group-text" id="melee_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="melee_disp" name="melee_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -361,7 +359,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="observation" name="observation" class="form-control py-2" title="0" onchange="updateSkill('observation')">
-										<span class="input-group-text" id="observation_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="observation_disp" name="observation_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -372,7 +370,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="survival" name="survival" class="form-control py-2" title="0" onchange="updateSkill('survival')">
-										<span class="input-group-text" id="survival_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="survival_disp" name="survival_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -383,7 +381,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="ranged" name="ranged" class="form-control py-2" title="0" onchange="updateSkill('ranged')">
-										<span class="input-group-text" id="ranged_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="ranged_disp" name="ranged_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -396,7 +394,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="command" name="command" class="form-control py-2" title="0" onchange="updateSkill('command')">
-										<span class="input-group-text" id="command_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="command_disp" name="command_disp" readonly>
 									</div>
 									<div class="table-title table-title-alt position-absolute">Avancées</div>
 								</div>
@@ -408,7 +406,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="culture" name="culture" class="form-control py-2" title="0" onchange="updateSkill('culture')">
-										<span class="input-group-text" id="culture_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="culture_disp" name="culture_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -419,7 +417,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="data_djinn" name="data_djinn" class="form-control py-2" title="0" onchange="updateSkill('data_djinn')">
-										<span class="input-group-text" id="data_djinn_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="data_djinn_disp" name="data_djinn_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -430,7 +428,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="medicurgy" name="medicurgy" class="form-control py-2" title="0" onchange="updateSkill('medicurgy')">
-										<span class="input-group-text" id="medicurgy_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="medicurgy_disp" name="medicurgy_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -441,7 +439,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="pilot" name="pilot" class="form-control py-2" title="0" onchange="updateSkill('pilot')">
-										<span class="input-group-text" id="pilot_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="pilot_disp" name="pilot_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -452,7 +450,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="mystic" name="mystic" class="form-control py-2" title="0" onchange="updateSkill('mystic')">
-										<span class="input-group-text" id="mystic_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="mystic_disp" name="mystic_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -463,7 +461,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="science" name="science" class="form-control py-2" title="0" onchange="updateSkill('science')">
-										<span class="input-group-text" id="science_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="science_disp" name="science_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -474,7 +472,7 @@
 								<div class="col">
 									<div class="input-group">
 										<input type="number" min="1" max="15" id="technology" name="technology" class="form-control py-2" title="0" onchange="updateSkill('technology')">
-										<span class="input-group-text" id="technology_disp">    </span>
+										<input type="text" class="input-group-text form-control disabled ps-0" id="technology_disp" name="technology_disp" readonly>
 									</div>
 								</div>
 							</div>
@@ -1023,40 +1021,50 @@ function updateSkill(skill) {
 			break;
 	}
 	
-	if(base !== undefined){
-		if($(base).val()){
-			if($("#"+skill).val()){
-				value=(parseInt($(base).val())+parseInt($("#"+skill).val()))
-			}else{
-				value=$(base).val()
-			}
-		}else{
-			if($("#"+skill).val()){
-				value=$("#"+skill).val()
-			}else{
-				value="1"
-			}
-		}
-		if(value<10) value="  "+value;
-		$("#"+skill+"_disp").text(value);
+	switch (skill) {
+		case "command":
+		case "culture":
+		case "data_djinn":
+		case "medicurgy":
+		case "pilot":
+		case "mystic":
+		case "science":
+		case "technology":
+			advanced=true;
+			break;
+		default: advanced=false;
+			break;
 	}
+	
+	if($("#"+skill).val()>=1){
+		if($(base).val()){
+			value=(parseInt($(base).val())+parseInt($("#"+skill).val()))
+		}else{
+			value=$("#"+skill).val()
+		}
+	}else{
+		if(advanced){
+			value=""
+		}else{
+			value=$(base).val()
+		}
+	}
+	$("#"+skill+"_disp").val(value);
 }
 
 function updatePoints(){
 	if($("#strength").val() &&$("#agility").val()){
 		value=parseInt($("#strength").val())+parseInt($("#agility").val());
-		if(value<10) value="  "+value;
-		$("#hp_disp").text(value);
+		$("#hp_disp").val(value);
 	}else{
-		$("#hp_disp").text("    ");
+		$("#hp_disp").val("");
 	}
 	
 	if($("#wits").val() &&$("#empathy").val()){
 		value=parseInt($("#wits").val())+parseInt($("#empathy").val());
-		if(value<10) value="  "+value;
-		$("#mp_disp").text(value);
+		$("#mp_disp").val(value);
 	}else{
-		$("#mp_disp").text("    ");
+		$("#mp_disp").val("");
 	}
 }
 

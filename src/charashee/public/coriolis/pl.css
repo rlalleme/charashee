@@ -1,15 +1,5 @@
-@font-face {
-	font-family: "Foundry Gridnik-Bold";
-	src: url("font/FoundryGridnik-Bold.ttf") format("truetype");
-}
-
 body, .btn {
 	font-variant: small-caps;
-}
-
-#coriolis-banner {
-	background: center/70% url("img/coriolis.png") no-repeat;
-	height: 150px;
 }
 
 .form-floating input.form-control {
@@ -18,6 +8,11 @@ body, .btn {
 
 .form-control, .form-select, .input-group-text {
 	border-radius: 0;
+}
+
+.input-group-text {
+/* 	min-width: 2.75rem; */
+	text-align: right;
 }
 
 .label-border {
@@ -33,13 +28,6 @@ body, .btn {
 .label-border div.col {
 	padding-left: 0;
 	padding-right: 0;
-}
-
-input[type=number]
-{
-	margin-right:0;
-	padding-right:0;
-	text-align: center;
 }
 
 .form-select {

@@ -1,3 +1,8 @@
+#coriolis-banner {
+background: center/70% url("img/coriolis.png") no-repeat;
+height: 150px;
+}
+
 body, .btn {
 	background-color: black;
 }

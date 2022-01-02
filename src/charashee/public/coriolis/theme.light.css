@@ -1,3 +1,8 @@
+#coriolis-banner {
+background: center/70% url("img/coriolis-dark.png") no-repeat;
+height: 150px;
+}
+
 .label-border div.col-9, .label-border div.col-10 {
 	border-top: 1px solid #ced4da;
 	border-bottom: 1px solid #ced4da;
@@ -7,8 +12,12 @@
 	border-top: 1px solid #ced4da;
 }
 
-.rose-bg, .rose-bg-line, .input-group-text {
+.rose-bg, .rose-bg-line {
 	background: #F5F5F5;
+}
+
+.input-group-text {
+	background: #E8E8E8;
 }
 
 legend {
